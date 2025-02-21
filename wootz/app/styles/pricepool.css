@@ -1,0 +1,80 @@
+/* Main price pool section */
+.price-pool {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    padding: 50px 20px; /* Add padding for smaller screens */
+    background: linear-gradient(135deg, #000000, #000000);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center; /* Center text for better alignment */
+}
+
+/* Title */
+.price-pool-title {
+    font-size: 2rem; /* Smaller size for mobile */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    max-width: 90%;
+    color: #ffffff;
+}
+
+.price-pool-title-mobile{
+    display: none;
+}
+
+/* Responsive font adjustments */
+@media (min-width: 768px) {
+    .price-pool-title {
+        font-size: 2.6rem; /* Larger font for tablets & above */
+        max-width: 1200px;
+    }
+}
+
+/* Count-up effect styling */
+.count-up {
+    font-size: 4rem; /* Smaller size for mobile */
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .count-up {
+        font-size: 6rem; /* Larger size for tablets */
+        letter-spacing: 3px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .count-up {
+        font-size: 9rem; /* Original size for desktops */
+        letter-spacing: 5px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .price-pool-title {
+        display: none; /* Hide the original long text */
+    }
+    
+    .price-pool-title-mobile {
+        display: block; /* Show the shorter text */
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #ffffff;
+    }
+
+    .price-pool{
+        height: 60vh;
+    }
+}
