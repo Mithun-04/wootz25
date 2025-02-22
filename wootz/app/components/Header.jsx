@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useState, useEffect } from "react";
 import { Link } from "react-scroll"; // Ensure react-scroll is installed
@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <header className={`header ${isSticky ? "sticky" : ""}`}>
       <h1>Wootz 2025</h1>
-      
+
       <nav>
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           <li><Link to="hero" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Home</Link></li>
@@ -30,7 +30,9 @@ const Header = () => {
           <li><Link to="workshops" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Workshops</Link></li>
           <li><Link to="paper-presentation" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Paper Presentation</Link></li>
           <li><Link to="contact" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Contact</Link></li>
-          <li><Link to="register" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Register</Link></li>
+          <li onClick={() => setMenuOpen(false)}>
+            <a href="/auth/signup">Register</a>
+          </li>
         </ul>
 
         {/* Toggle Menu Icon */}
