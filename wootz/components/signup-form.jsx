@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Select from "react-select"; // Import react-select
-
+import Select from "react-select"; 
 import colleges from "../app/auth/signup/CollegeList";
 import departments from "../app/auth/signup/DepartmentList";
 
@@ -16,6 +16,7 @@ const PSG_COLLEGE = "PSG College of Technology (Autonomous), Peelamedu, Coimbato
 
 export function SignupForm({ className, email = "", ...props }) {
   const router = useRouter();
+  const Select = dynamic(() => import('react-select'), { ssr: false });
 
   const [otherCollege, setOtherCollege] = useState("");
   const [otherDept, setOtherDept] = useState("");
@@ -51,6 +52,21 @@ export function SignupForm({ className, email = "", ...props }) {
         }));
       })
       .catch((err) => console.error("ERROR", err));
+  }, [email]);
+
+  // Ensure client-specific state changes happen only on the client side
+  useEffect(() => {
+    // This ensures formData is initialized only on the client
+    if (typeof window !== "undefined") {
+      // Client-specific logic here
+      if (email.endsWith("psgtech.ac.in")) {
+        setFormData((prev) => ({
+          ...prev,
+          college: PSG_COLLEGE,
+          isPSGStudent: true,
+        }));
+      }
+    }
   }, [email]);
 
   const handleContinue = async () => {
@@ -89,8 +105,6 @@ export function SignupForm({ className, email = "", ...props }) {
 
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
- 
-
       {/* Name Field */}
       <Label htmlFor="name">Name</Label>
       <Input
@@ -124,10 +138,7 @@ export function SignupForm({ className, email = "", ...props }) {
       {/* College Selection (Searchable) */}
       <Label htmlFor="college">College/University</Label>
       <Select
-        options={[
-          ...colleges.map((college) => ({ value: college, label: college })),
-          { value: "Other", label: "Other" }, // Add "Other" option
-        ]}
+        options={[...colleges.map((college) => ({ value: college, label: college })), { value: "Other", label: "Other" }]}
         isSearchable
         placeholder="Search and select..."
         onChange={(selected) => {
@@ -153,10 +164,7 @@ export function SignupForm({ className, email = "", ...props }) {
       {/* Department Selection (Searchable) */}
       <Label htmlFor="department">Department</Label>
       <Select
-        options={[
-          ...departments.map((dept) => ({ value: dept, label: dept })),
-          { value: "Other", label: "Other" }, // Add "Other" option
-        ]}
+        options={[...departments.map((dept) => ({ value: dept, label: dept })), { value: "Other", label: "Other" }]}
         isSearchable
         placeholder="Search and select..."
         onChange={(selected) => {
@@ -203,7 +211,6 @@ export function SignupForm({ className, email = "", ...props }) {
           Login
         </a>
       </div>
-      
     </form>
   );
 }

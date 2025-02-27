@@ -7,7 +7,7 @@ export default function LoginPage() {
     <div className="login-container">
       <div className="login-content">
         <div className="logo-container">
-          <a href="#" className="logo">
+          <a href="" className="logo">
             <div className="logo-icon">
               <GalleryVerticalEnd className="size-4" />
             </div>

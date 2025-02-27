@@ -72,9 +72,12 @@
 /* Enable scrolling only for large screens */
 @media (min-width: 768px) {
     .form-scroll {
-        max-height: 500px; /* Limit height of the form */
-        overflow-y: auto; /* Enable scrolling only for larger screens */
-        padding: 0 10px; /* Prevent content from hiding behind scrollbar */
+        max-height: 500px;
+        /* Limit height of the form */
+        overflow-y: auto;
+        /* Enable scrolling only for larger screens */
+        padding: 0 10px;
+        /* Prevent content from hiding behind scrollbar */
     }
 
     /* Optional: Hide scrollbar for a cleaner look */
@@ -98,9 +101,13 @@
     .form-scroll {
         overflow-y: hidden;
     }
-    .form-container{
+
+    .form-container {
         margin-top: 130px;
     }
+
+
+
 }
 
 /* Signup Image */
@@ -128,6 +135,20 @@
     filter: brightness(0.2) grayscale(1);
 }
 
-.form-scroll{
+.form-scroll {
     padding-top: 25px;
+}
+
+.signup-form h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+}
+
+@media (max-width: 767px) {
+    .signup-form h1 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: black;
+    }
 }
