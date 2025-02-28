@@ -8,6 +8,7 @@ import Hero from "./components/Hero";
 import PricePool from "./components/PricePool";
 import Events from "./components/Events";
 
+
 export default function Home() {
   useEffect(() => {
     AOS.init({ duration: 1400, once: false });
