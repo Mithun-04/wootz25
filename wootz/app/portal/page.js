@@ -1,6 +1,6 @@
 "use client"
 import * as React from "react"
-import { usePathname, useSearchParams } from "next/navigation" // Import Next.js router
+import { usePathname, useSearchParams } from "next/navigation"
 import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
@@ -16,21 +16,42 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import "./portal.css"
+import { useEffect, useState } from "react";
 
 export default function Eventpage() {
-  const pathname = usePathname() 
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const event = searchParams.get("event");
-  const pathSegments = pathname.split("/").filter(Boolean) 
+  const eventName = searchParams.get("event"); // Get event name from query params
+  const pathSegments = pathname.split("/").filter(Boolean);
+
+  const [events, setEvents] = useState([]);
+  const [eventDetails, setEventDetails] = useState(null);
+
+  useEffect(() => {
+    fetch("/events.json")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Fetched Events Data:", data.events); // Debugging
+        setEvents(data.events);
+
+        const selectedEvent = data.events.find(
+          (e) => e.title.toLowerCase().trim() === eventName?.toLowerCase().trim()
+        );
+
+        console.log("Selected Event:", selectedEvent); // Debugging
+        setEventDetails(selectedEvent || null);
+      });
+  }, [eventName]);
 
   return (
     <SidebarProvider>
-      <AppSidebar/>
+      <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
+        <header className="header">
+          <div className="breadcrumb-container">
+            <SidebarTrigger className="sidebar-trigger" />
+            <Separator className="separator" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
@@ -39,8 +60,8 @@ export default function Eventpage() {
                 <BreadcrumbSeparator />
                 {pathSegments.map((segment, index) => {
                   const href = "/" + pathSegments.slice(0, index + 1).join("/")
-                  const isLast = index === pathSegments.length - 1
-                  
+                  const isLast = index === pathSegments.length - 1;
+
                   return (
                     <React.Fragment key={href}>
                       <BreadcrumbItem>
@@ -54,13 +75,13 @@ export default function Eventpage() {
                       </BreadcrumbItem>
                       {!isLast && <BreadcrumbSeparator />}
                     </React.Fragment>
-                  )
+                  );
                 })}
-                {event && (
+                {eventName && (
                   <>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                      <BreadcrumbPage>{decodeURIComponent(event)}</BreadcrumbPage>
+                      <BreadcrumbPage>{decodeURIComponent(eventName)}</BreadcrumbPage>
                     </BreadcrumbItem>
                   </>
                 )}
@@ -68,15 +89,57 @@ export default function Eventpage() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+
+        <div className="content">
+          {eventDetails ? (
+            <>
+              <div className="event-intro">
+                <h1 className="event-title">{eventDetails.title}</h1>
+                <p className="event-description">{eventDetails.description}</p>
+              </div>
+
+              <div className="event-content">
+                <h2 className="section-title">Rounds</h2>
+                <div className="event-rounds">
+                  {eventDetails.rounds?.map((round, index) => (
+                    <div key={index} className="round-card">
+                      <h3 className="round-title">{round.name}</h3>
+                      <p>{round.description}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <h2 className="section-title">Event Details</h2>
+                <div className="event-details">
+                  <div className="event-venue card">
+                    <h3>Venue</h3>
+                    <p><strong>Date:</strong> {eventDetails.venue.date}</p>
+                    <p><strong>Time:</strong> {eventDetails.venue.time}</p>
+                    <p><strong>Location:</strong> {eventDetails.venue.location}</p>
+                    <p><strong>Team Size:</strong> {eventDetails.venue.teamSize}</p>
+                  </div>
+
+                  <div className="event-prizes card">
+                    <h3>Prizes</h3>
+                    <p><strong>Winner:</strong> ₹{eventDetails.venue.prizes.winner}</p>
+                    <p><strong>First Runner-Up:</strong> ₹{eventDetails.venue.prizes.firstRunnerUp}</p>
+                    <p><strong>Second Runner-Up:</strong> ₹{eventDetails.venue.prizes.secondRunnerUp}</p>
+                  </div>
+
+                  <div className="event-contact card">
+                    <h3>Contacts</h3>
+                    {eventDetails.contacts?.map((contact, index) => (
+                      <p key={index}><strong>{contact.name}:</strong> {contact.phone}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <p className="not-found">Event not found.</p>
+          )}
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

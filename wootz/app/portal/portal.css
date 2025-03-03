@@ -1,3 +1,98 @@
-.sidebar{
-    background-color: black;
-}
+/* eventpage.css */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .breadcrumb-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 15px;
+  }
+  
+  .separator {
+    height: 20px;
+    width: 1px;
+    background-color: #ccc;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .event-intro {
+    margin-bottom: 20px;
+  }
+  
+  .event-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .event-description {
+    color: #555;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .event-rounds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .round-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .round-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .event-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .card {
+    flex: 1;
+    min-width: 250px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-venue {
+    background-color: #e7f3ff;
+  }
+  
+  .event-prizes {
+    background-color: #d4edda;
+  }
+  
+  .event-contact {
+    background-color: #f8d7da;
+  }
+  
+  .not-found {
+    text-align: center;
+    color: #888;
+  }
+  
