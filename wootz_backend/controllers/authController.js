@@ -2,16 +2,17 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
+const nodemailer = require("nodemailer");
 
 dotenv.config();
 
 // Register a new user
 exports.register = async (req, res) => {
   try {
-    const { name, email, phone, college, branch, year } = req.body;
+    const { name, email, phone, college, department, year } = req.body;
 
     // Validate input
-    if (!name || !email || !phone || !college || !branch || !year) {
+    if (!name || !email || !phone || !college || !department || !year) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -22,7 +23,8 @@ exports.register = async (req, res) => {
     }
 
     // Create new user without password and verified status
-    const user = new User({ name, email, phone, college, branch, year });
+    const user = new User({ name, email, phone, college, department, year });
+
     await user.save();
 
     // Create a verification tokencd
@@ -172,4 +174,59 @@ exports.getProfile = async (req, res) => {
     console.error("Get profile error:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
+};
+
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
+
+exports.verify_email = async (req, res) => {
+  const { name, email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: "Email is required" });
+  }
+
+  try {
+
+    const token = Buffer.from(email).toString("base64");
+
+    const mailOptions = {
+      from: `"Wootz 25" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Verify Your Email - Wootz 25",
+      html: `
+        <div style="font-family: Arial, sans-serif; text-align: left; padding: 20px; background-color: #000; color: white; max-width: 450px; margin: auto; border-radius: 8px;">
+          <h2 style="color: #ff9900; text-align: center;">Wootz 25 - Email Verification</h2>
+          <p style="color: white;">Hello <strong>${name}</strong>,</p>
+          <p style="color: white;">Click the button below to set up your password and verify your account:</p>
+          <div style="text-align: center; margin-top: 10px;">
+            <a href="http://localhost:3000/set-password?token=${token}" 
+               style="display: inline-block; padding: 12px 24px; background-color: #ff9900; color: #000; 
+               text-decoration: none; font-weight: bold; border-radius: 5px;">
+              Verify Email
+            </a>
+          </div>
+          <p style="color: white; font-size: 12px; margin-top: 20px;">If you did not request this, please ignore this email.</p>
+          <hr style="border: 0.5px solid #333; margin: 20px 0;">
+          <p style="color: white; font-size: 14px;">Best wishes,<br><strong>Wootz Team</strong><br>PSG College of Technology</p>
+        </div>
+      `,
+    };
+
+
+
+    await transporter.sendMail(mailOptions);
+    res.json({ message: "Verification email sent successfully" });
+
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ message: "Failed to send verification email" });
+  }
+
 };

@@ -5,7 +5,10 @@ const Counter = require("./Counter.js"); // Ensure correct path
 const UserSchema = new mongoose.Schema({
     wootz_id: {
         type: String,
-        unique: true
+        unique: true,
+        sparse: true,
+        default: null
+        
     },
     name: {
         type: String,
@@ -24,7 +27,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    branch: {
+    department: {
         type: String,
         required: true
     },
@@ -41,6 +44,10 @@ const UserSchema = new mongoose.Schema({
         default: "user"
     },
     verified: {
+        type: Boolean,
+        default: false
+    },
+    payment: {
         type: Boolean,
         default: false
     }

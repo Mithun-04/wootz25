@@ -1,5 +1,5 @@
 const express = require("express");
-const { register, login, getProfile, setPassword } = require("../controllers/authController");
+const { register, login, getProfile, setPassword, verify_email } = require("../controllers/authController");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { set } = require("mongoose");
 
@@ -22,5 +22,7 @@ router.post("/login", login);
 router.get("/profile", authMiddleware, getProfile);
 
 router.post("/setpassword", setPassword);
+
+router.post("/verify_email", verify_email)
 
 module.exports = router;

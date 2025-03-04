@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Select from "react-select"; 
+import Select from "react-select";
 import colleges from "../app/auth/signup/CollegeList";
 import departments from "../app/auth/signup/DepartmentList";
 
@@ -69,7 +69,9 @@ export function SignupForm({ className, email = "", ...props }) {
     }
   }, [email]);
 
+
   const handleContinue = async () => {
+
     if (!formData.name) return toast.error("Please enter your name");
     if (!formData.email) return toast.error("Please enter your email");
     if (!formData.phone) return toast.error("Please enter your phone number");
@@ -100,12 +102,42 @@ export function SignupForm({ className, email = "", ...props }) {
       return toast.error("Please choose PSG College of Technology as your college");
     }
 
-    toast.success("Form submitted successfully");
+    try {
+      console.log("Form Data", formData);
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast.success("Registration successful");
+
+        // 📩 Send verification email
+        await fetch("http://localhost:5000/api/auth/verify_email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            name: formData.name
+          }),
+        });
+
+        
+        router.push(`/auth/verify-email?email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.name)}`);
+            } else {
+        const errorData = await response.json();
+        toast.error(`Registration failed: ${errorData.message} Please Check The Email!`);
+      }
+    } catch (error) {
+      toast.error(`Registration failed - No Response: ${error.message}`);
+    }
   };
 
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
-      {/* Name Field */}
       <Label htmlFor="name">Name</Label>
       <Input
         id="name"
@@ -115,7 +147,6 @@ export function SignupForm({ className, email = "", ...props }) {
         required
       />
 
-      {/* Email Field */}
       <Label htmlFor="email">Email</Label>
       <Input
         id="email"

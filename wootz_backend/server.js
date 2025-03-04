@@ -17,10 +17,11 @@ const app = express();
 // Middleware
 app.use(express.json()); // Parse JSON request bodies
 app.use(cors({
-  origin: "http://localhost:5000", // Replace with your frontend URL
+  origin: "http://localhost:3000", 
   credentials: true, // Allows cookies to be sent
 })); // Enable CORS for cross-origin requests
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 mongoose.set("debug", true);
 
 // Connect to MongoDB
