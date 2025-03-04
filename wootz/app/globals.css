@@ -91,6 +91,20 @@ body{
   body {
     @apply bg-background text-foreground;
   }
+
+  @layer base {
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #605151;
+        border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
 }
 
 
@@ -104,4 +118,23 @@ body{
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.blur-background {
+  filter: blur(8px); /* Blurs the background */
+  transition: filter 0.3s ease-in-out;
+}
+
+.dashboard-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  backdrop-filter: blur(10px); /* Applies the blur */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }

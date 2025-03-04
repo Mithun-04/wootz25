@@ -10,11 +10,11 @@
           },
           {
             "name": "Pictionary",
-            "description": "One team member draws clues representing a metallurgical term while the other guesses within two minutes."
+            "description": "This round introduces a creative element where one team member draws clues representing a metallurgical term while the other tries to guess it. However, direct depictions of the term, letters, numbers, or symbols are not allowed. The goal is to interpret the clues correctly within two minutes per term. The team with the most correct guesses wins."
           },
           {
             "name": "Metallurgy Detective",
-            "description": "Participants solve real-life material failure case studies using logical reasoning and metallurgical expertise."
+            "description": "Participants step into the shoes of forensic metallurgists, solving real-life material failure case studies. Given clues, they must identify the issue, the material involved, and the root cause of failure using logical reasoning and metallurgical expertise. Points are awarded based on the accuracy of the analysis and the strength of their argument."
           }
         ],
         "venue": {
@@ -40,20 +40,20 @@
         ]
       },
       {
-        "title": "MINDSPARK ARENA",
+        "title": "Mindspark Arena",
         "description": "A competitive knowledge-based event designed to test decision-making, analytical thinking, and engineering expertise.",
         "rounds": [
           {
             "name": "Beat the Question Challenge",
-            "description": "Teams strategically answer questions, doubling their points for correct answers or losing them for wrong ones."
+            "description": "Each team starts with 1000 points and strategically competes to maximize their score. Before a question is asked, any team can “beat” to claim the right to answer. A correct answer within 10 seconds doubles their points, while a wrong answer results in losing the same amount. If the first team fails, the question is passed to the next team for a standard point value. The team with the highest score at the end wins, testing both knowledge and strategic risk-taking."
           },
           {
             "name": "Myth Busters",
-            "description": "Participants analyze engineering-related statements and justify whether they are true or myths."
+            "description": "In this round, participants analyze engineering-related statements, determining whether they are true or myths. Each answer must be justified with logical reasoning. Points are awarded based on accuracy and the quality of justification. This round enhances critical thinking by encouraging participants to distinguish between facts and misconceptions, promoting scientific awareness and curiosity."
           },
           {
             "name": "Casting",
-            "description": "Participants create molds using plaster of Paris to learn practical material processing techniques."
+            "description": "This hands-on round introduces participants to casting by having them create molds using plaster of Paris. They mix and pour the material over a model object, wait for it to set, then carefully remove the model to reveal a detailed mold. Once hardened, the mold can be refined and used for further casting applications. This round provides a practical learning experience in material processing and mold-making techniques."
           }
         ],
         "venue": {
@@ -79,7 +79,7 @@
         ]
       },
       {
-        "title": "WOOTZ MAESTRO",
+        "title": "Wootz Maestro",
         "description": "A Metallurgical quiz competition consisting of two rounds.",
         "rounds": [
           {
@@ -114,7 +114,7 @@
         ]
       },
       {
-        "title": "PAPER PRESENTATION",
+        "title": "Paper Presentation 1",
         "description": "Students present their research on metallurgy, materials science, and related topics.",
         "topics": [
           "Advancements in manufacturing technology",

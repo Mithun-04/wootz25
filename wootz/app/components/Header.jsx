@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-scroll"; // Ensure react-scroll is installed
-import { IoMenu, IoClose } from "react-icons/io5"; // Import Close icon
+import { Link } from "react-scroll";
+import { IoMenu, IoClose } from "react-icons/io5";
 import "../styles/header.css";
 
-const Header = () => {
+const Header = ({ onRegisterClick }) => {
   const [isSticky, setIsSticky] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false); // State for menu toggle
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // State for menu toggle
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +24,6 @@ const Header = () => {
   return (
     <header className={`header ${isSticky ? "sticky" : ""}`}>
       <h1>Wootz 2025</h1>
-
       <nav>
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           <li><Link to="hero" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Home</Link></li>
@@ -30,8 +31,11 @@ const Header = () => {
           <li><Link to="workshops" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Workshops</Link></li>
           <li><Link to="paper-presentation" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Paper Presentation</Link></li>
           <li><Link to="contact" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Contact</Link></li>
-          <li onClick={() => setMenuOpen(false)}>
-            <a href="/auth/signup">Register</a>
+          <li onClick={() => {
+            setMenuOpen(false);
+            onRegisterClick();
+          }}>
+            <a href="#">Register</a>
           </li>
         </ul>
 

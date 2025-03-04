@@ -27,6 +27,7 @@ export default function Eventpage() {
 
   const [events, setEvents] = useState([]);
   const [eventDetails, setEventDetails] = useState(null);
+  var selectedEvent = "";
 
   useEffect(() => {
     fetch("/events.json")
@@ -35,7 +36,7 @@ export default function Eventpage() {
         console.log("Fetched Events Data:", data.events); // Debugging
         setEvents(data.events);
 
-        const selectedEvent = data.events.find(
+        selectedEvent = data.events.find(
           (e) => e.title.toLowerCase().trim() === eventName?.toLowerCase().trim()
         );
 
@@ -43,7 +44,7 @@ export default function Eventpage() {
         setEventDetails(selectedEvent || null);
       });
   }, [eventName]);
-
+  const isPaperPresentation = eventDetails?.title.toLowerCase() === "paper presentation 1";
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -94,20 +95,38 @@ export default function Eventpage() {
           {eventDetails ? (
             <>
               <div className="event-intro">
-                <h1 className="event-title">{eventDetails.title}</h1>
+                <div className="event-meta">
+                  <h1 className="event-title">{eventDetails.title}</h1><span className="event-status">(not registered)</span>
+                </div>
                 <p className="event-description">{eventDetails.description}</p>
               </div>
 
               <div className="event-content">
-                <h2 className="section-title">Rounds</h2>
-                <div className="event-rounds">
-                  {eventDetails.rounds?.map((round, index) => (
-                    <div key={index} className="round-card">
-                      <h3 className="round-title">{round.name}</h3>
-                      <p>{round.description}</p>
+                {isPaperPresentation ? (
+                  <>
+                    <h2 className="section-title">Topics</h2>
+                    <ul className="event-rounds">
+                      {eventDetails.topics.map((topic, index) => (
+                        <li key={index} className="round-card">
+                          {topic}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="section-title">Rounds</h2>
+                    <div className="event-rounds">
+                      {eventDetails.rounds?.map((round, index) => (
+                        <div key={index} className="round-card">
+                          <h3 className="round-title">Round {index + 1}: {round.name}</h3>
+                          <p>{round.description}</p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </>
+                )
+                }
 
                 <h2 className="section-title">Event Details</h2>
                 <div className="event-details">
@@ -140,6 +159,6 @@ export default function Eventpage() {
           )}
         </div>
       </SidebarInset>
-    </SidebarProvider>
+    </SidebarProvider >
   );
 }

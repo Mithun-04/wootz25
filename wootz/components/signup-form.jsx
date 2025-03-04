@@ -141,6 +141,7 @@ export function SignupForm({ className, email = "", ...props }) {
         options={[...colleges.map((college) => ({ value: college, label: college })), { value: "Other", label: "Other" }]}
         isSearchable
         placeholder="Search and select..."
+        value={{ value: formData.college, label: formData.college }}
         onChange={(selected) => {
           setFormData({ ...formData, college: selected.value });
           setIsOther(selected.value === "Other");
@@ -167,6 +168,7 @@ export function SignupForm({ className, email = "", ...props }) {
         options={[...departments.map((dept) => ({ value: dept, label: dept })), { value: "Other", label: "Other" }]}
         isSearchable
         placeholder="Search and select..."
+        value={{ value: formData.department, label: formData.department }}
         onChange={(selected) => {
           setFormData({ ...formData, department: selected.value });
           setIsOtherDept(selected.value === "Other");
@@ -198,6 +200,7 @@ export function SignupForm({ className, email = "", ...props }) {
           { value: "5", label: "PG" },
         ]}
         placeholder="Select a year"
+        value={{ value: formData.year, label: formData.year }}
         onChange={(selected) => setFormData({ ...formData, year: selected.value })}
       />
 

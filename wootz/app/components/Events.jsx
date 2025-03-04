@@ -41,7 +41,7 @@ function Events() {
                                 <h2 className="event-title">WOOTZ QUEST</h2>
                                 <div className="event-details">
                                     <p>A thrilling team challenge in metallurgy and problem-solving!</p>
-                                    <button className="event-details-button" onClick={() => router.push("/portal?event=Wootz+Quest")}>
+                                    <button className="event-details-button" onClick={() => window.location.href = "/portal?event=Wootz+Quest"}>
                                         Register
                                     </button>
                                 </div>
@@ -70,7 +70,7 @@ function Events() {
                                 <h2 className="event-title">MINDSPARK ARENA</h2>
                                 <div className="event-details">
                                     <p>A battle of wit, strategy, and engineering mastery!</p>
-                                    <button className="event-details-button" onClick={() => router.push("/portal?event=MindSpark+Arena")}>
+                                    <button className="event-details-button" onClick={() => window.location.href = "/portal?event=MindSpark+Arena"}>
                                         Register
                                     </button>
                                 </div>
@@ -98,7 +98,7 @@ function Events() {
                                 <h2 className="event-title">WOOTZ MAESTRO</h2>
                                 <div className="event-details">
                                     <p>The ultimate metallurgical quiz challenge!</p>
-                                    <button className="event-details-button" onClick={() => router.push("/portal?event=Wootz+Maestro")}>
+                                    <button className="event-details-button" onClick={() => window.location.href = "/portal?event=Wootz+Maestro"}>
                                         Register
                                     </button>
                                 </div>
