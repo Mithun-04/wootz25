@@ -25,8 +25,7 @@ exports.register = async (req, res) => {
     // Create new user without password and verified status
     const user = new User({ name, email, phone, college, department, year });
 
-    await user.save();
-
+    
     // Create a verification tokencd
     const token = jwt.sign(
       { userId: user._id, email: user.email },
@@ -34,20 +33,18 @@ exports.register = async (req, res) => {
       { expiresIn: '1h' }
     );
     console.log("Token: ", token);
-    res.cookie('verification_token', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'None',
-      maxAge: 1 * 60 * 60 * 1000,
-    });
+    
+    user.verification_token = token;
+    await user.save();
+  
 
-    res.status(201).json({
+  res.status(201).json({
       message: "User registered successfully. Please verify your email to complete the registration.",
       user: {
         name: user.name,
         email: user.email,
         wootz_id: user.wootz_id,
-        role: user.role
+        role: user.role,
       }
     });
   } catch (error) {
@@ -193,9 +190,13 @@ exports.verify_email = async (req, res) => {
   }
 
   try {
+    const user = await User.findOne({ email });
 
-    const token = Buffer.from(email).toString("base64");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
+    const token = user.verification_token;
     const mailOptions = {
       from: `"Wootz 25" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -206,7 +207,7 @@ exports.verify_email = async (req, res) => {
           <p style="color: white;">Hello <strong>${name}</strong>,</p>
           <p style="color: white;">Click the button below to set up your password and verify your account:</p>
           <div style="text-align: center; margin-top: 10px;">
-            <a href="http://localhost:3000/set-password?token=${token}" 
+            <a href="http://localhost:3000/auth/set-password?token=${token}" 
                style="display: inline-block; padding: 12px 24px; background-color: #ff9900; color: #000; 
                text-decoration: none; font-weight: bold; border-radius: 5px;">
               Verify Email
@@ -218,7 +219,6 @@ exports.verify_email = async (req, res) => {
         </div>
       `,
     };
-
 
 
     await transporter.sendMail(mailOptions);

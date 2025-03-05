@@ -113,21 +113,24 @@ export function SignupForm({ className, email = "", ...props }) {
       });
 
       if (response.ok) {
-        toast.success("Registration successful");
 
-        // 📩 Send verification email
         await fetch("http://localhost:5000/api/auth/verify_email", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
           body: JSON.stringify({
             email: formData.email,
             name: formData.name
           }),
         });
 
-        
+        toast.success("Registration successful");
+
+
         router.push(`/auth/verify-email?email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.name)}`);
-            } else {
+      } else {
         const errorData = await response.json();
         toast.error(`Registration failed: ${errorData.message} Please Check The Email!`);
       }

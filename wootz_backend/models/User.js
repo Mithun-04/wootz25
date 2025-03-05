@@ -7,8 +7,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         unique: true,
         sparse: true,
-        default: null
-        
+        default: undefined
+
     },
     name: {
         type: String,
@@ -47,13 +47,18 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+
+    verification_token: {
+        type: String,
+        default: undefined
+    },
     payment: {
         type: Boolean,
         default: false
     }
 }, { timestamps: true });
 
-// Auto-generate wootz_id before saving
+
 UserSchema.pre("save", async function (next) {
     if (!this.wootz_id && this.verified) {
         try {
