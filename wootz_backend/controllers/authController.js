@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
     // Create new user without password and verified status
     const user = new User({ name, email, phone, college, department, year });
 
-    
+
     // Create a verification tokencd
     const token = jwt.sign(
       { userId: user._id, email: user.email },
@@ -33,12 +33,12 @@ exports.register = async (req, res) => {
       { expiresIn: '1h' }
     );
     console.log("Token: ", token);
-    
+
     user.verification_token = token;
     await user.save();
-  
 
-  res.status(201).json({
+
+    res.status(201).json({
       message: "User registered successfully. Please verify your email to complete the registration.",
       user: {
         name: user.name,
@@ -112,8 +112,7 @@ exports.login = async (req, res) => {
       return res.status(400).json({ message: 'Please verify your email first' });
     }
 
-    // Use the comparePassword method we added to the UserSchema
-    const isMatch = await user.comparePassword(password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
@@ -127,20 +126,14 @@ exports.login = async (req, res) => {
 
     res.cookie('wootz___proj', token, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: 'None',
       maxAge: 2 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
       token,
-      // user: {
-      //     name: user.name,
-      //     email: user.email,
-      //     wootz_id: user.wootz_id,
-      //     role: user.role
-      // }
-    });
+});
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: 'Server error', error: error.message });

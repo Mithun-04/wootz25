@@ -3,13 +3,23 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { IoMenu, IoClose } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import Cookies  from "universal-cookie";
 import "../styles/header.css";
 
-const Header = ({ onRegisterClick }) => {
+const Header = ({onRegisterClick}) => {
+
+  const cookies = new Cookies();
   const [isSticky, setIsSticky] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // State for menu toggle
+  // Check authentication state
+  useEffect(() => {
+    const token = cookies.get("token");
+    setIsAuthenticated(!!token);
+  }, []);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,12 +41,25 @@ const Header = ({ onRegisterClick }) => {
           <li><Link to="workshops" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Workshops</Link></li>
           <li><Link to="paper-presentation" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Paper Presentation</Link></li>
           <li><Link to="contact" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Contact</Link></li>
-          <li onClick={() => {
-            setMenuOpen(false);
-            onRegisterClick();
-          }}>
-            <a href="#">Register</a>
-          </li>
+
+          {/* Show Dashboard + Logout if authenticated, else show Register */}
+          {isAuthenticated ? (
+            <>
+              <li onClick={() => {
+                setMenuOpen(false);
+                onRegisterClick();
+              }}>
+                <a href="#">Dashboard</a>
+              </li>
+            </>
+          ) : (
+            <li onClick={() => {
+              setMenuOpen(false);
+              window.location.href = "/auth/signup";
+            }}>
+              <a href="#">Register</a>
+            </li>
+          )}
         </ul>
 
         {/* Toggle Menu Icon */}

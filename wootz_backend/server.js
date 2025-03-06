@@ -23,6 +23,7 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 mongoose.set("debug", true);
+app.set("trust proxy", 1);
 
 // Connect to MongoDB
 mongoose

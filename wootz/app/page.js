@@ -22,8 +22,12 @@ export default function Home() {
         console.log("Opening dashboard...");
         setShowDashboard(true)
       }
-        } />
-      <Hero />
+      } />
+      <Hero onRegisterClick={() => {
+        console.log("Opening dashboard...");
+        setShowDashboard(true)
+      }
+      } />
       <PricePool />
       <Events />
       <Dashboard isOpen={showDashboard} onBackClick={() => setShowDashboard(false)} />
