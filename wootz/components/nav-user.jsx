@@ -1,29 +1,40 @@
 "use client"
 
 import { LogOut } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
+import { useDispatch, useSelector } from "react-redux"
+import { handleLogout } from "@/store/authSlice"
 
-export function NavUser({ user, onLogout }) {
+
+export function NavUser({ onLogout }) {
+
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.auth.user)?.user;
+  console.log("NavUser:", user);
+
+  if(user === undefined) {
+    return (
+      <div className="dashboard-container">
+      </div>
+    );
+  }
+
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
+ 
         <SidebarMenuButton
           size="lg"
-          className="flex items-center gap-2 rounded-lg p-2 text-left hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+          className="flex items-center gap-2 rounded-lg p-2 text-left hover:bg-gray-950 hover:text-white"
           onClick={onLogout}
         >
-          <Avatar className="h-8 w-8 rounded-lg">
-            <AvatarImage src={user.avatar} alt={user.name} />
-            <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-          </Avatar>
           <div className="flex-1 text-sm">
-            <span className="block font-semibold">{user.name}</span>
-            <span className="block text-xs text-muted-foreground">{user.email}</span>
+            <span className="block font-semibold">{user?.name}</span>
+            <span className="block text-xs text-muted-foreground">{user?.email}</span>
           </div>
-          <LogOut className="size-5" />
+          <LogOut className="size-5" onClick={() => { dispatch(handleLogout());
+            window.location.href = "/";
+           }} />
         </SidebarMenuButton>
-      </SidebarMenuItem>
-    </SidebarMenu>
+
   )
 }

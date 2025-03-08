@@ -19,7 +19,7 @@ router.post("/register", register);
 router.post("/login", login);
 
 // Get user profile (Protected route)
-router.get("/profile", authMiddleware, getProfile);
+router.get("/profile", getProfile);
 
 router.post("/setpassword", setPassword);
 

@@ -2,7 +2,7 @@
     "events": [
       {
         "title": "Wootz Quest",
-        "description": "An exciting team-based event that challenges participants' metallurgical knowledge, critical thinking, and problem-solving skills through three unique rounds.",
+        "description": "An exciting team-based event that challenges participant's metallurgical knowledge and problem-solving skills through three unique rounds.",
         "rounds": [
           {
             "name": "Material Match",

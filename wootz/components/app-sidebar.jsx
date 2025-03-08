@@ -31,14 +31,14 @@ const data = {
   navMain: [
     {
       title: "Home",
-      url: "#",
+      url: "/",
       icon: Home,
       isActive: true,
     },
     {
       title: "Events",
       url: "#",
-      icon: CalendarHeart, // Represents events, schedules, or activities
+      icon: CalendarHeart, 
       items: [
         {
           title: "Wootz Quest",

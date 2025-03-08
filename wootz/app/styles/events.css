@@ -96,6 +96,13 @@
      border : 1px solid var(--primary-color);
 }
 
+.nav-links li {
+    cursor: pointer;
+  }
+  
+  .nav-links li:hover {
+    color: #c55932;
+  }
 
 @media (max-width: 640px) {
 

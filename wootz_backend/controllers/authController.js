@@ -143,8 +143,14 @@ exports.login = async (req, res) => {
 // Get user profile
 exports.getProfile = async (req, res) => {
   try {
-    // Assuming the user ID is extracted from the token in a middleware
-    const user = await User.findById(req.userId).select('-password');
+    
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId).select('-password');
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -152,12 +158,16 @@ exports.getProfile = async (req, res) => {
 
     res.status(200).json({
       user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        wootz_id: user.wootz_id,
-        role: user.role,
-        createdAt: user.createdAt
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      college: user.college,
+      department: user.department,
+      year: user.year,
+      wootz_id: user.wootz_id,
+      verified: user.verified,
+      payment : user.payment
       }
     });
   } catch (error) {
@@ -165,7 +175,6 @@ exports.getProfile = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

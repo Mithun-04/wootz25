@@ -1,9 +1,7 @@
-/* Make text responsive using relative units */
+/* Base Font Size */
 html {
-    font-size: 16px;
-    /* Default font size */
+    font-size: 14px; /* Reduced from 16px */
 }
-
 
 /* Profile Header */
 .profile-head {
@@ -20,32 +18,28 @@ html {
     display: flex;
     flex-direction: column;
     align-items: left;
-
 }
 
 .profile-name-role h1 {
     margin: 0;
     padding: 0;
-    font-size: 2rem;
-    /* Adjusts with viewport size */
+    font-size: clamp(1rem, 2.5vw, 1.5rem); /* Reduced from 1.2rem, 3vw, 2rem */
     font-weight: bold;
     margin-top: 0.8rem;
 }
 
 /* Responsive Font Sizes */
 .profile-name {
-    font-size: 1.5rem;
-    /* Adjusts with viewport size */
+    font-size: clamp(0.9rem, 2vw, 1.3rem); /* Reduced from 1rem, 2.5vw, 1.5rem */
     font-weight: bold;
     margin-top: 10px;
 }
 
 .profile-role {
-    font-size: 1rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem); /* Reduced from 0.8rem, 2vw, 1rem */
     color: #bbb;
 }
 
-/* Profile Details */
 .profile-details {
     font-family: 'Arial', sans-serif;
     color: white;
@@ -62,8 +56,7 @@ html {
 
 .about-head h2 {
     margin-left: 10px;
-    font-size: 1.5rem;
-    /* Responsive font */
+    font-size: clamp(0.9rem, 2vw, 1.3rem); /* Reduced from 1rem, 2.5vw, 1.5rem */
     color: white;
 }
 
@@ -79,41 +72,38 @@ html {
     color: white;
     margin-right: 20px;
     flex: 1;
-    font-size: 1rem;
-
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem); /* Reduced from 0.8rem, 2vw, 1rem */
 }
 
 .value {
     color: white;
     flex: 2;
-    font-size: 1rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem); /* Reduced from 0.8rem, 2vw, 1rem */
 }
-
 
 .back-icon {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem */
     cursor: pointer;
 }
-
 
 .profile-image img {
     border-radius: 50%;
 }
 
-.payment-section{
+/* Payment Section */
+.payment-section {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
-    justify-content: space-between;
-
+    margin: 0.5rem;
 }
-
-
 
 .payment-status {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
 
 .dashboard-container {
@@ -129,116 +119,39 @@ html {
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1100;
-  }
-
-@media (max-width: 1024px) {
-    .profile-name {
-        font-size: 1.3rem;
-    }
-
-    .profile-role {
-        font-size: 0.9rem;
-    }
-
-    .about-head h2 {
-        font-size: 1.3rem;
-    }
-
-    .label,
-    .value {
-        font-size: 0.9rem;
-    }
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    justify-content: space-between;
+    overscroll-behavior: contain;
 }
 
-@media (max-width: 768px) {
-    .dashboard-container {
-        width: 100%;
-        height: auto;
-        float: none;
-        padding: 10px;
-        /* Reduce padding for smaller screens */
-    }
-
-    .profile-name {
-        font-size: 1.2rem;
-    }
-
-    .profile-role {
-        font-size: 0.8rem;
-    }
-
-    .about-head h2 {
-        font-size: 1.2rem;
-    }
-
-    .label,
-    .value {
-        font-size: 0.85rem;
-    }
-
-    .logout-button button {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-
-    }
+.dashboard-container::-webkit-scrollbar {
+    display: none;
 }
 
-@media (max-width: 480px) {
-    .profile-name {
-        font-size: 1rem;
-    }
-
-    .profile-role {
-        font-size: 0.75rem;
-    }
-
-    .about-head h2 {
-        font-size: 1rem;
-    }
-
-    .label,
-    .value {
-        font-size: 0.75rem;
-    }
-
-    .logout-button button {
-        width: 100%;
-        /* Full width for better touch targets */
-        padding: 8px;
-        /* Reduce padding for smaller screens */
-        font-size: 12px;
-        /* Adjust font size */
-    }
-
-    .profile-head {
-        padding: 0.3rem;
-    }
-
-    .dashboard-container{
-        width: 100%;
-        height: 100vh; 
-    }
+.profile-details {
+    flex-grow: 1;
+    padding-bottom: 2rem;
 }
 
+/* Logout Button */
 .logout-button {
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: auto;
+    padding: 1rem 0;
 }
 
 .logout-button button {
     width: 90%;
-    background-color: red   ;
+    background-color: red;
     color: white;
-    padding: 15px;
+    padding: 12px; /* Reduced from 15px */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px; /* Reduced from 16px */
 }
 
 .logout-button button:hover {
@@ -253,13 +166,13 @@ html {
     gap: 8px;
 }
 
-
 .logout-button {
-    margin-top: auto; 
+    margin-top: auto;
     display: flex;
     justify-content: center;
 }
 
+/* Overlay for Sidebar */
 .overlay {
     position: fixed;
     top: 0;
@@ -272,13 +185,108 @@ html {
     visibility: hidden;
     transition: opacity 0.3s ease-in-out;
     z-index: 1000;
-  }
-  .overlay.show {
+}
+
+.overlay.show {
     opacity: 1;
     visibility: visible;
-  }
+}
 
-  .dashboard-container.show {
+.dashboard-container.show {
     transform: translateX(0);
-  }
-  
+}
+
+
+.pay-now-button {
+    border-radius: 4px; /* Increased for a softer look */
+    background: linear-gradient(135deg, #4CAF50, #45a049); /* Gradient for a modern feel */
+    color: white; 
+    font-size: clamp(0.8rem, 1.8vw, 1rem); /* Responsive font size */
+    cursor: pointer;
+    max-width: 50%;
+    padding: 0.5rem 1rem; /* Increased padding for better clickability */
+    border: none; /* Remove default border */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+    font-weight: 600; /* Bold text */
+    text-align: center; /* Center text */
+    display: inline-block; /* Ensure it behaves like a button */
+    text-decoration: none; 
+}
+
+.payment-details {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+}
+
+.payment-details span{
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+    .pay-now-button:hover {
+        background: linear-gradient(135deg, #45a049, #4CAF50); /* Reverse gradient on hover */
+        transform: translateY(-2px); /* Slight lift effect */
+    }
+
+    .pay-now-button:active {
+        transform: translateY(0); /* Reset lift effect when clicked */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow when clicked */
+    }
+
+/* Media Queries for Different Screen Sizes */
+@media (max-width: 1024px) {
+    .profile-name {
+        font-size: clamp(0.9rem, 1.8vw, 1.2rem); /* Reduced from 1rem, 2vw, 1.3rem */
+    }
+
+    .profile-role {
+        font-size: clamp(0.65rem, 1.6vw, 0.8rem); /* Reduced from 0.75rem, 1.8vw, 0.9rem */
+    }
+
+    .about-head h2 {
+        font-size: clamp(0.9rem, 1.8vw, 1.2rem); /* Reduced from 1rem, 2vw, 1.3rem */
+    }
+
+    .label,
+    .value {
+        font-size: clamp(0.65rem, 1.6vw, 0.8rem); /* Reduced from 0.75rem, 1.8vw, 0.9rem */
+    }
+}
+@media (max-width: 480px) {
+    .dashboard-container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .profile-name {
+        font-size: clamp(1.3rem, 4vw, 1.8rem); /* Increased further */
+    }
+
+    .profile-role {
+        font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Increased further */
+    }
+
+    .about-head h2 {
+        font-size: clamp(1.3rem, 4vw, 1.8rem); /* Increased further */
+    }
+
+    .label,
+    .value {
+        font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Increased further */
+    }
+
+    .logout-button button {
+        font-size: 18px; /* Increased from 14px */
+        padding: 18px; /* Increased from 12px */
+    }
+
+    .back-icon {
+        font-size: 1.8rem; /* Increased from 1.2rem */
+    }
+
+    .profile-name-role h1 {
+        font-size: clamp(1.4rem, 4.5vw, 2rem); /* Increased further */
+    }
+}

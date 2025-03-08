@@ -7,16 +7,18 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Cookies from 'universal-cookie';
+import { useDispatch } from "react-redux";
+import { handleLogin } from "@/store/authSlice"; // ✅ Updated import
 
 export function LoginForm({ className, ...props }) {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleLogin = async () => {
+  const handleLoginSubmit = async () => {
     if (!formData.email) return toast.error("Please enter your email");
     if (!formData.password) return toast.error("Please enter your password");
 
@@ -31,10 +33,7 @@ export function LoginForm({ className, ...props }) {
 
       if (response.ok) {
         const data = await response.json();
-        const cookies = new Cookies();
-        const expiryDate = new Date();
-        expiryDate.setDate(expiryDate.getDate() + 2);
-        cookies.set('token', data.token, { path: '/', expires: expiryDate });
+        dispatch(handleLogin(data.token)); // ✅ Dispatch handleLogin (which sets Redux state + cookies)
         toast.success("Login successful");
         router.push("/");
       } else {
@@ -80,7 +79,7 @@ export function LoginForm({ className, ...props }) {
             required
           />
         </div>
-        <Button type="button" onClick={handleLogin} className="w-full">
+        <Button type="button" onClick={handleLoginSubmit} className="w-full">
           Login
         </Button>
       </div>

@@ -1,26 +1,29 @@
-"use client"; // Ensure it runs on the client side
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { use, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLogout , fetchUser} from "@/store/authSlice";
 import { BackgroundLines } from "@/components/ui/background-lines";
-import "../styles/Hero.css";
 import { useRouter } from "next/navigation";
-import Cookies from 'universal-cookie';
+import "../styles/Hero.css";
 
 export function Hero({ onRegisterClick }) {
   const router = useRouter();
-  const cookies = new Cookies();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [auth, setAuth] = useState(null);
 
-  // Check if user is authenticated
   useEffect(() => {
-    const token = cookies.get("token"); // Get token from cookies
-    setIsAuthenticated(!!token); // Convert to boolean (true if exists)
-  }, []);
+    setAuth(isAuthenticated);
+  }, [isAuthenticated]);
 
-  // Logout function
-  const handleLogout = () => {
-    cookies.remove("token", { path: "/" }); // Remove token from cookies
-    setIsAuthenticated(false); // Update state
-    router.push("/"); 
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
+  const handleLocalLogout = () => {
+    dispatch(handleLogout());
+    router.push("/");
   };
 
   return (
@@ -34,20 +37,21 @@ export function Hero({ onRegisterClick }) {
           Join us for an incredible experience filled with innovation, workshops, and fun events. Register now!
         </p>
 
-        {/* Buttons */}
         <div className="hero-buttons" data-aos="zoom-in" data-aos-delay="600">
-          {isAuthenticated ? (
+          {auth === null ? ( 
+            <button className="hero-button">Loading...</button>
+          ) : auth ? (
             <>
               <button className="hero-button" onClick={onRegisterClick}>
                 Dashboard
               </button>
-              <button className="hero-button logout-btn" onClick={handleLogout}>
+              <button className="hero-button logout-btn" onClick={handleLocalLogout}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <button className="hero-button" onClick={() => router.push("/auth/login")}>
+              <button className="hero-button" onClick={() => window.location.href = "/auth/login"}>   
                 Login
               </button>
               <button className="hero-button" onClick={() => router.push("/auth/signup")}>

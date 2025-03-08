@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/sidebar"
 import "./portal.css"
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Eventpage() {
   const pathname = usePathname();
@@ -28,6 +29,8 @@ export default function Eventpage() {
   const [events, setEvents] = useState([]);
   const [eventDetails, setEventDetails] = useState(null);
   var selectedEvent = "";
+  const user = useSelector(state => state.auth.user)?.user;
+  console.log("User:", user);
 
   useEffect(() => {
     fetch("/events.json")
@@ -96,7 +99,23 @@ export default function Eventpage() {
             <>
               <div className="event-intro">
                 <div className="event-meta">
-                  <h1 className="event-title">{eventDetails.title}</h1><span className="event-status">(not registered)</span>
+                  <div className="event-main-meta">
+                    <h1 className="event-title">{eventDetails.title}</h1>
+                    {user?.payment ? (
+                      <span className="event-status-1">(registered)</span>
+
+                    ) : (
+                      <span className="event-status">(not registered)</span>
+
+                    )}
+                  </div>
+                  {user === undefined ? (<div className="register-button">
+                    <button className="event-register" onClick={() => window.location.href = "/auth/signup"}>Register</button>
+                  </div>) : (user?.payment ? (<></>) :
+                    (<div className="register-button">
+                      <button className="event-register" onClick={() => window.location.href = "/auth/signup"}>Pay Now</button>
+                    </div>))}
+
                 </div>
                 <p className="event-description">{eventDetails.description}</p>
               </div>
