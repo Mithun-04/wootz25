@@ -8,6 +8,7 @@ import Hero from "./components/Hero";
 import PricePool from "./components/PricePool";
 import Events from "./components/Events";
 import Dashboard from "./components/Dashboard";
+import Workshop from "./components/Workshop";
 
 export default function Home() {
   const [showDashboard, setShowDashboard] = useState(false);
@@ -30,6 +31,7 @@ export default function Home() {
       } />
       <PricePool />
       <Events />
+      <Workshop />
       <Dashboard isOpen={showDashboard} onBackClick={() => setShowDashboard(false)} />
     </div>
   );

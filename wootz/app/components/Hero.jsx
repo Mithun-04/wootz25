@@ -54,7 +54,7 @@ export function Hero({ onRegisterClick }) {
               <button className="hero-button" onClick={() => window.location.href = "/auth/login"}>   
                 Login
               </button>
-              <button className="hero-button" onClick={() => router.push("/auth/signup")}>
+              <button className="hero-button" onClick={() => window.location.href = "/auth/signup"}>
                 Register
               </button>
             </>
