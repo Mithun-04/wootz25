@@ -6,7 +6,6 @@ const nodemailer = require("nodemailer");
 
 dotenv.config();
 
-// Register a new user
 exports.register = async (req, res) => {
   try {
     const { name, email, phone, college, department, year } = req.body;
@@ -28,9 +27,9 @@ exports.register = async (req, res) => {
 
     // Create a verification tokencd
     const token = jwt.sign(
-      { userId: user._id, email: user.email },
+      { userId: user._id, role: user.role, wootz_id: user.wootz_id },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '2d' }
     );
     console.log("Token: ", token);
 

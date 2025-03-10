@@ -38,6 +38,7 @@ export default function Page() {
         throw new Error(data.message || "Something went wrong");
       }
       toast.success("Password set successfully");
+      window.location.href = "/auth/payment";
     } catch (err) {
       setError(err.message);
       toast.error(err.message);
