@@ -11,16 +11,17 @@ function Events() {
 
     const router = useRouter();
 
-    
+
     return (
-        <div className='events-main' id = 'events'>
-            <h1 className='bg-clip-text text-transparent bg-gradient-to-b from-neutral-600 to-neutral-300 dark:from-neutral-400 dark:to-gray-200 text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight'>
+        <div className='events-main' id='events'>
+            <h1 className='lg:mt-20 lg:pt-14 pt-4 md:pt-10 bg-clip-text text-transparent bg-gradient-to-b from-neutral-600 to-neutral-300 dark:from-neutral-400 dark:to-gray-200 text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight'>
                 Exciting Events
             </h1>
 
+
             <div className="events">
 
-             
+
                 <div className="event-card-container" data-aos="fade-up">
 
                     <TiltedCard
@@ -50,7 +51,7 @@ function Events() {
                     />
                 </div>
 
-             
+
                 <div className="event-card-container" data-aos="fade-up" data-aos-delay="300">
                     <TiltedCard
                         imageSrc="/assets/mind1.png"

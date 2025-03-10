@@ -10,6 +10,7 @@ import Events from "./components/Events";
 import Dashboard from "./components/Dashboard";
 import Workshop from "./components/Workshop";
 import FaQ from "./components/FaQ";
+import Contact from "./components/Contact";
 
 export default function Home() {
   const [showDashboard, setShowDashboard] = useState(false);
@@ -34,6 +35,7 @@ export default function Home() {
       <Events />
       <Workshop />
       <FaQ />
+      <Contact />
       <Dashboard isOpen={showDashboard} onBackClick={() => setShowDashboard(false)} />
     </div>
   );

@@ -41,7 +41,7 @@ const Header = ({ onRegisterClick }) => {
           <li><Link to="hero" smooth={true} duration={500} onClick={() => setMenuOpen(false)} style={{ cursor: 'pointer' }}>Home</Link></li>
           <li><Link to="events" smooth={true} duration={500} onClick={() => setMenuOpen(false)} style={{ cursor: 'pointer' }}>Events</Link></li>
           <li><Link to="workshops" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Workshops</Link></li>
-          <li><Link to="workshops" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Paper Presentation</Link></li>
+          <li><Link to="faq" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>FAQs</Link></li>
           <li><Link to="contact" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Contact</Link></li>
           {auth ? (
             <li onClick={() => { setMenuOpen(false); onRegisterClick(); }}>
