@@ -91,7 +91,7 @@ export function NavMain({ items }) {
                 <SidebarMenuButton
                   tooltip={item.title}
                   asChild
-                  className={`hover:bg-gray-800 hover:text-white ${isActive ? "bg-gray-800 text-white" : ""
+                  className={`hover:bg-gray-800 hover:text-white ${isActive ? "text-white" : ""
                     }`}
                 >
                   <a href={item.url} className="flex items-center w-full">

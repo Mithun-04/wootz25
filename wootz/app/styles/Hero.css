@@ -19,8 +19,27 @@
     padding: 20px 0;
 }
 
+.hero-button-login{
+    padding: 10px 20px;
+    /* border: 2px solid white; */
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;   
+}
 
+.hero-button-login:hover {
+    /* border: 0px; */
+    /* background-color: transparent;
+    border: 2px solid white; */
+    transform: translate3d(0, -5px, 0);
+}
 
+.hero-heading span{
+    color: var(--primary-color);
+}
 @media (min-width: 768px) {
     .hero-heading {
         font-size: 3rem;
@@ -57,8 +76,8 @@
 }
 
 .hero-button:hover {
-    border: 0px;
-    background-color: var(--primary-color);
+    /* border: 0px;
+    background-color: var(--primary-color); */
     transform: translate3d(0, -5px, 0);
 }
 

@@ -48,6 +48,7 @@ export default function Eventpage() {
       });
   }, [eventName]);
   const isPaperPresentation = eventDetails?.title.toLowerCase() === "paper presentation 1";
+  const isWorkshop = eventDetails?.title.toLowerCase() === "workshop 1";
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -121,7 +122,29 @@ export default function Eventpage() {
               </div>
 
               <div className="event-content">
-                {isPaperPresentation ? (
+                {isWorkshop ? (
+                  <>
+                    <h2 className="section-title">Workshop Sessions</h2>
+                    <div className="event-rounds">
+                      {eventDetails.sessions?.map((session, index) => (
+                        <div key={index} className="round">
+                          <h3 className="round-title">{session.name}</h3>
+                          <ul className="event-ronuds">
+                            {session.topics?.map((topic, i) => (
+                              <li key={i}>{topic}</li>
+                            ))}
+                          </ul>
+                          {session.activities?.map((activity, i) => (
+                            <div key={i} className="round-card">
+                              <strong><h4>{activity.name}</h4></strong>
+                              <p>{activity.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : isPaperPresentation ? (
                   <>
                     <h2 className="section-title">Topics</h2>
                     <ul className="event-rounds">
@@ -144,10 +167,16 @@ export default function Eventpage() {
                       ))}
                     </div>
                   </>
+                )}
+
+                {isWorkshop ? (
+                  <h2 className="section-title">Workshop Details</h2>
+                ) : isPaperPresentation ? (
+                  < h2 className="section-title">Presentation Details</h2>
+                ) : (
+                  <h2 className="section-title">Event Details</h2>
                 )
                 }
-
-                <h2 className="section-title">Event Details</h2>
                 <div className="event-details">
                   <div className="event-venue card">
                     <h3>Venue</h3>

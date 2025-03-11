@@ -30,7 +30,7 @@ export function Hero({ onRegisterClick }) {
     <section id="hero">
       <BackgroundLines className="hero-container">
         <h2 className="hero-heading" data-aos="fade-down">
-          Wootz <span>2025</span> <br /> Empowering the Future with Metals
+          Wootz 16 - <span>April  6 </span>&<span> 7</span> <br /> Empowering the Future with Metals
         </h2>
 
         <p className="hero-subtext" data-aos="fade-up" data-aos-delay="300">
@@ -42,7 +42,7 @@ export function Hero({ onRegisterClick }) {
             <button className="hero-button">Loading...</button>
           ) : auth ? (
             <>
-              <button className="hero-button" onClick={onRegisterClick}>
+              <button className="hero-button-login" onClick={onRegisterClick}>
                 Dashboard
               </button>
               <button className="hero-button logout-btn" onClick={handleLocalLogout}>
@@ -51,7 +51,7 @@ export function Hero({ onRegisterClick }) {
             </>
           ) : (
             <>
-              <button className="hero-button" onClick={() => window.location.href = "/auth/login"}>   
+              <button className="hero-button-login" onClick={() => window.location.href = "/auth/login"}>   
                 Login
               </button>
               <button className="hero-button" onClick={() => window.location.href = "/auth/signup"}>

@@ -41,7 +41,7 @@ function Workshop() {
                                 <h2 className="event-title">WorkShop</h2>
                                 <div className="event-details">
                                     <p>A hands-on session and demonstrations on advanced metallurgy techniques.</p>
-                                    <button className="event-details-button" onClick={() => window.location.href = "/portal?event=Wootz+Quest"}>
+                                    <button className="event-details-button" onClick={() => window.location.href = "/portal?event=Workshop+1"}>
                                         Register
                                     </button>
                                 </div>

@@ -1,155 +1,204 @@
 {
-    "events": [
-      {
-        "title": "Wootz Quest",
-        "description": "An exciting team-based event that challenges participant's metallurgical knowledge and problem-solving skills through three unique rounds.",
-        "rounds": [
-          {
-            "name": "Material Match",
-            "description": "In this round, teams of two work collaboratively to match material properties with their correct applications. Each team member receives a different set of questions—one listing material properties and the other listing applications. Initially, they must eliminate the two least likely options on their paper within 10 minutes. Then, they exchange papers, and the second member selects the correct answer from the remaining choices. Accuracy and speed determine the winners, but communication is strictly prohibited during the round."
-          },
-          {
-            "name": "Pictionary",
-            "description": "This round introduces a creative element where one team member draws clues representing a metallurgical term while the other tries to guess it. However, direct depictions of the term, letters, numbers, or symbols are not allowed. The goal is to interpret the clues correctly within two minutes per term. The team with the most correct guesses wins."
-          },
-          {
-            "name": "Metallurgy Detective",
-            "description": "Participants step into the shoes of forensic metallurgists, solving real-life material failure case studies. Given clues, they must identify the issue, the material involved, and the root cause of failure using logical reasoning and metallurgical expertise. Points are awarded based on the accuracy of the analysis and the strength of their argument."
-          }
-        ],
-        "venue": {
-          "date": "28 Feb 2025",
-          "time": "10:00 AM - 12:00 PM",
-          "location": "Survey Lab and N Block ground",
-          "teamSize": "2-3 Members",
-          "prizes": {
-            "winner": "3000",
-            "firstRunnerUp": "1500",
-            "secondRunnerUp": "1000"
-          }
+  "events": [
+    {
+      "title": "Wootz Quest",
+      "description": "An exciting team-based event that challenges participant's metallurgical knowledge and problem-solving skills through three unique rounds.",
+      "rounds": [
+        {
+          "name": "Material Match",
+          "description": "In this round, teams of two work collaboratively to match material properties with their correct applications. Each team member receives a different set of questions—one listing material properties and the other listing applications. Initially, they must eliminate the two least likely options on their paper within 10 minutes. Then, they exchange papers, and the second member selects the correct answer from the remaining choices. Accuracy and speed determine the winners, but communication is strictly prohibited during the round."
         },
-        "contacts": [
-          {
-            "name": "Vinothkumar S",
-            "phone": "9870392952"
-          },
-          {
-            "name": "Harshil",
-            "phone": "8826542923"
-          }
-        ]
+        {
+          "name": "Pictionary",
+          "description": "This round introduces a creative element where one team member draws clues representing a metallurgical term while the other tries to guess it. However, direct depictions of the term, letters, numbers, or symbols are not allowed. The goal is to interpret the clues correctly within two minutes per term. The team with the most correct guesses wins."
+        },
+        {
+          "name": "Metallurgy Detective",
+          "description": "Participants step into the shoes of forensic metallurgists, solving real-life material failure case studies. Given clues, they must identify the issue, the material involved, and the root cause of failure using logical reasoning and metallurgical expertise. Points are awarded based on the accuracy of the analysis and the strength of their argument."
+        }
+      ],
+      "venue": {
+        "date": "28 Feb 2025",
+        "time": "10:00 AM - 12:00 PM",
+        "location": "Survey Lab and N Block ground",
+        "teamSize": "2-3 Members",
+        "prizes": {
+          "winner": "3000",
+          "firstRunnerUp": "1500",
+          "secondRunnerUp": "1000"
+        }
       },
-      {
-        "title": "Mindspark Arena",
-        "description": "A competitive knowledge-based event designed to test decision-making, analytical thinking, and engineering expertise.",
-        "rounds": [
-          {
-            "name": "Beat the Question Challenge",
-            "description": "Each team starts with 1000 points and strategically competes to maximize their score. Before a question is asked, any team can “beat” to claim the right to answer. A correct answer within 10 seconds doubles their points, while a wrong answer results in losing the same amount. If the first team fails, the question is passed to the next team for a standard point value. The team with the highest score at the end wins, testing both knowledge and strategic risk-taking."
-          },
-          {
-            "name": "Myth Busters",
-            "description": "In this round, participants analyze engineering-related statements, determining whether they are true or myths. Each answer must be justified with logical reasoning. Points are awarded based on accuracy and the quality of justification. This round enhances critical thinking by encouraging participants to distinguish between facts and misconceptions, promoting scientific awareness and curiosity."
-          },
-          {
-            "name": "Casting",
-            "description": "This hands-on round introduces participants to casting by having them create molds using plaster of Paris. They mix and pour the material over a model object, wait for it to set, then carefully remove the model to reveal a detailed mold. Once hardened, the mold can be refined and used for further casting applications. This round provides a practical learning experience in material processing and mold-making techniques."
-          }
-        ],
-        "venue": {
-          "date": "28 Feb 2025",
-          "time": "10:00 AM - 12:00 PM",
-          "location": "Survey Lab and N Block ground",
-          "teamSize": "2-3 Members",
-          "prizes": {
-            "winner": "3000",
-            "firstRunnerUp": "1500",
-            "secondRunnerUp": "1000"
-          }
+      "contacts": [
+        {
+          "name": "Sujith G ",
+          "phone": "9500929577"
         },
-        "contacts": [
-          {
-            "name": "Vinothkumar S",
-            "phone": "9870392952"
-          },
-          {
-            "name": "Harshil",
-            "phone": "8826542923"
-          }
-        ]
+        {
+          "name": "Abishek S ",
+          "phone": "8220418904"
+        }
+      ]
+    },
+    {
+      "title": "Mindspark Arena",
+      "description": "A competitive knowledge-based event designed to test decision-making, analytical thinking, and engineering expertise.",
+      "rounds": [
+        {
+          "name": "Beat the Question Challenge",
+          "description": "Each team starts with 1000 points and strategically competes to maximize their score. Before a question is asked, any team can “beat” to claim the right to answer. A correct answer within 10 seconds doubles their points, while a wrong answer results in losing the same amount. If the first team fails, the question is passed to the next team for a standard point value. The team with the highest score at the end wins, testing both knowledge and strategic risk-taking."
+        },
+        {
+          "name": "Myth Busters",
+          "description": "In this round, participants analyze engineering-related statements, determining whether they are true or myths. Each answer must be justified with logical reasoning. Points are awarded based on accuracy and the quality of justification. This round enhances critical thinking by encouraging participants to distinguish between facts and misconceptions, promoting scientific awareness and curiosity."
+        },
+        {
+          "name": "Casting",
+          "description": "This hands-on round introduces participants to casting by having them create molds using plaster of Paris. They mix and pour the material over a model object, wait for it to set, then carefully remove the model to reveal a detailed mold. Once hardened, the mold can be refined and used for further casting applications. This round provides a practical learning experience in material processing and mold-making techniques."
+        }
+      ],
+      "venue": {
+        "date": "28 Feb 2025",
+        "time": "10:00 AM - 12:00 PM",
+        "location": "Survey Lab and N Block ground",
+        "teamSize": "2-3 Members",
+        "prizes": {
+          "winner": "3000",
+          "firstRunnerUp": "1500",
+          "secondRunnerUp": "1000"
+        }
       },
-      {
-        "title": "Wootz Maestro",
-        "description": "A Metallurgical quiz competition consisting of two rounds.",
-        "rounds": [
-          {
-            "name": "Preliminary Quiz",
-            "description": "A common quiz round for all participants."
-          },
-          {
-            "name": "Final Quiz",
-            "description": "Top 5 teams compete in a quiz master format to determine the winner."
-          }
-        ],
-        "venue": {
-          "date": "28 Feb 2025",
-          "time": "10:00 AM - 12:00 PM",
-          "location": "Survey Lab and N Block ground",
-          "teamSize": "2-3 Members",
-          "prizes": {
-            "winner": "3000",
-            "firstRunnerUp": "1500",
-            "secondRunnerUp": "1000"
-          }
+      "contacts": [
+        {
+          "name": "Sudharsan N ",
+          "phone": "9345726869"
         },
-        "contacts": [
-          {
-            "name": "Vinothkumar S",
-            "phone": "9870392952"
-          },
-          {
-            "name": "Harshil",
-            "phone": "8826542923"
-          }
-        ]
+        {
+          "name": "Pooja S ",
+          "phone": "9444826662"
+        }
+      ]
+    },
+    {
+      "title": "Wootz Maestro",
+      "description": "A Metallurgical quiz competition consisting of two rounds.",
+      "rounds": [
+        {
+          "name": "Preliminary Quiz",
+          "description": "A common quiz round for all participants."
+        },
+        {
+          "name": "Final Quiz",
+          "description": "Top 5 teams compete in a quiz master format to determine the winner."
+        }
+      ],
+      "venue": {
+        "date": "28 Feb 2025",
+        "time": "10:00 AM - 12:00 PM",
+        "location": "Survey Lab and N Block ground",
+        "teamSize": "2-3 Members",
+        "prizes": {
+          "winner": "3000",
+          "firstRunnerUp": "1500",
+          "secondRunnerUp": "1000"
+        }
       },
-      {
-        "title": "Paper Presentation 1",
-        "description": "Students present their research on metallurgy, materials science, and related topics.",
-        "topics": [
-          "Advancements in manufacturing technology",
-          "AI & ML in material science and manufacturing process",
-          "Additive manufacturing",
-          "Composites and Ceramics",
-          "Extractive metallurgy – Ferrous and Non-Ferrous metals",
-          "Materials for Defence, Nuclear and Aerospace",
-          "Simulation in manufacturing and material science",
-          "Smart materials, Bio-materials and functional materials",
-          "Smart Manufacturing and Industry 4.0",
-          "Structure – Properties – Correlation"
-        ],
-        "venue": {
-          "date": "28 Feb 2025",
-          "time": "10:00 AM - 12:00 PM",
-          "location": "Survey Lab and N Block ground",
-          "teamSize": "2-3 Members",
-          "prizes": {
-            "winner": "3000",
-            "firstRunnerUp": "1500",
-            "secondRunnerUp": "1000"
-          }
+      "contacts": [
+        {
+          "name": " Harish B ",
+          "phone": "9025265168"
         },
-        "contacts": [
-          {
-            "name": "Vinothkumar S",
-            "phone": "9870392952"
-          },
-          {
-            "name": "Harshil",
-            "phone": "8826542923"
-          }
-        ]
-      }
-    ]
-  }
-  
+        {
+          "name": "Madhumitha P ",
+          "phone": "9384416470"
+        }
+      ]
+    },
+    {
+      "title": "Paper Presentation 1",
+      "description": "Students present their research on metallurgy, materials science, and related topics.",
+      "topics": [
+        "Advancements in manufacturing technology",
+        "AI & ML in material science and manufacturing process",
+        "Additive manufacturing",
+        "Composites and Ceramics",
+        "Extractive metallurgy – Ferrous and Non-Ferrous metals",
+        "Materials for Defence, Nuclear and Aerospace",
+        "Simulation in manufacturing and material science",
+        "Smart materials, Bio-materials and functional materials",
+        "Smart Manufacturing and Industry 4.0",
+        "Structure – Properties – Correlation"
+      ],
+      "venue": {
+        "date": "28 Feb 2025",
+        "time": "10:00 AM - 12:00 PM",
+        "location": "Survey Lab and N Block ground",
+        "teamSize": "2-3 Members",
+        "prizes": {
+          "winner": "3000",
+          "firstRunnerUp": "1500",
+          "secondRunnerUp": "1000"
+        }
+      },
+      "contacts": [
+        {
+          "name": "Mohamed Niyas A",
+          "phone": "6374241719"
+        },
+        {
+          "name": "Rithanya D",
+          "phone": "9443130573"
+        }
+      ]
+    },
+    {
+      "title": "Workshop 1",
+      "description": "Join us for an exciting hands-on Materials Science Workshop, where we bridge the gap between fundamental concepts and real-world applications. This immersive session will introduce participants to basic alloy melting techniques and innovative material processing methods, followed by live demonstrations of key metallurgical experiments.",
+      "sessions": [
+        {
+          "name": "Lecture Session",
+          "topics": [
+            "Introduction to basic alloy melting principles",
+            "Fundamentals of metallurgical reactions and material synthesis",
+            "Insights into modern material fabrication techniques"
+          ]
+        },
+        {
+          "name": "Live Demonstrations",
+          "activities": [
+            {
+              "name": "Thermite Steel Synthesis",
+              "description": "Witness the spectacular reduction of iron oxide using aluminum powder, a fundamental yet powerful reaction used in metallurgy."
+            },
+            {
+              "name": "DIY Resistance Furnace",
+              "description": "Learn how to construct a functional resistance furnace using Kanthal wires and an alumina tube, an essential tool for high-temperature applications."
+            },
+            {
+              "name": "Alloy Melting & Casting",
+              "description": "Explore melting and solidification techniques to understand how alloys are engineered for various industrial applications."
+            }
+          ]
+        }
+      ],
+      "venue": {
+        "date": "28 Feb 2025",
+        "time": "2:00 PM - 5:00 PM",
+        "location": "Metallurgy Lab, N Block",
+        "teamSize": "Individual or Groups up to 3",
+        "prizes": {
+          "certificate": "Participation Certificates for all attendees"
+        }
+      },
+      "contacts": [
+        {
+          "name": " Cresent Ajai K",
+          "phone": "9751770758"
+        },
+        {
+          "name": "Swaathy R",
+          "phone": "9597151364"
+        }
+      ]
+    }
+  ]
+}
