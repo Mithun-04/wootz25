@@ -5,6 +5,15 @@ const dotenv = require('dotenv');
 const nodemailer = require("nodemailer");
 
 dotenv.config();
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  }
+});
 
 exports.register = async (req, res) => {
   try {
@@ -15,39 +24,75 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
+    // Check if user already exists
     const userExists = await User.findOne({ email });
-
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Create new user without password and verified status
-    const user = new User({ name, email, phone, college, department, year });
-
-
-    // Create a verification tokencd
+    // Generate verification token
     const token = jwt.sign(
-      { userId: user._id, role: user.role, wootz_id: user.wootz_id },
+      { email },
       process.env.JWT_SECRET,
-      { expiresIn: '2d' }
+      { expiresIn: "2d" }
     );
     console.log("Token: ", token);
+    // Email options
+    const mailOptions = {
+      from: `"Wootz 25" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Verify Your Email - Wootz 25",
+      html: `
+        <div style="font-family: Arial, sans-serif; text-align: left; padding: 20px; background-color: #000; color: white; max-width: 450px; margin: auto; border-radius: 8px;">
+          <h2 style="color: #ff9900; text-align: center;">Wootz 25 - Email Verification</h2>
+          <p style="color: white;">Hello <strong>${name}</strong>,</p>
+          <p style="color: white;">Click the button below to set up your password and verify your account:</p>
+          <div style="text-align: center; margin-top: 10px;">
+            <a href="http://localhost:3000/auth/set-password?token=${token}" 
+               style="display: inline-block; padding: 12px 24px; background-color: #ff9900; color: #000; 
+               text-decoration: none; font-weight: bold; border-radius: 5px;">
+              Verify Email
+            </a>
+          </div>
+          <p style="color: white; font-size: 12px; margin-top: 20px;">If you did not request this, please ignore this email.</p>
+          <hr style="border: 0.5px solid #333; margin: 20px 0;">
+          <p style="color: white; font-size: 14px;">Best wishes,<br><strong>Wootz Team</strong><br>PSG College of Technology</p>
+        </div>
+      `,
+    };
 
-    user.verification_token = token;
+    // Attempt to send the email first
+    await transporter.sendMail(mailOptions);
+
+    // If email is sent successfully, create and save the user
+    const user = new User({
+      name,
+      email,
+      phone,
+      college,
+      department,
+      year,
+      verification_token: token,
+    });
+
     await user.save();
-
 
     res.status(201).json({
       message: "User registered successfully. Please verify your email to complete the registration.",
       user: {
         name: user.name,
         email: user.email,
-        wootz_id: user.wootz_id,
-        role: user.role,
-      }
+      },
     });
+
   } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Error:", error);
+
+    // Check if error is from nodemailer
+    if (error.response) {
+      return res.status(500).json({ message: "Failed to send verification email", error: error.message });
+    }
+
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
@@ -64,13 +109,12 @@ exports.setPassword = async (req, res) => {
 
     // Verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.userId);
+    const user = await User.findOne({ email: decoded.email });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;
     user.verified = true;
@@ -174,15 +218,7 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  port: 587, 
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
-  }
-});
+
 
 exports.verify_email = async (req, res) => {
   const { email } = req.body;

@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { LuUserRound } from "react-icons/lu";
 import { IoArrowBack } from "react-icons/io5";
 import { MdOutlinePayment } from "react-icons/md";
-import { CheckCircle, XCircle } from "lucide-react"; // Import cross icon
-import { handleLogout } from '@/store/authSlice'; // Import logout action
+import { CheckCircle } from "lucide-react"; 
+import { handleLogout } from '@/store/authSlice';
 
 function Dashboard({ onBackClick, isOpen }) {
 
@@ -22,7 +22,7 @@ function Dashboard({ onBackClick, isOpen }) {
     const user = useSelector(state => state.auth.user)?.user;
 
     console.log("User:", user);
-    
+
 
     if (!user) {
         return (
@@ -89,21 +89,26 @@ function Dashboard({ onBackClick, isOpen }) {
                                 {user?.payment ? (
                                     <>
                                         <span>Payment Verified</span>
-                                        <CheckCircle color="#00FF00" size={20} />
+                                       
                                     </>
                                 ) : (
                                     <>
-                                        <span>Payment Not Verified</span>
-                                        {/* <XCircle color="#FF0000" size={20} /> */}
+                                        <span>Payment Not Done
+
+                                        </span>
+
                                     </>
                                 )}
                             </div>
-                            {!user?.payment && (
+                            {user?.payment ? ( <CheckCircle color="#00FF00" size={20} />) : (
                                 <div className="pay-now-button">
                                     <button onClick={handlePayment}>Pay Now</button>
                                 </div>
                             )}
                         </div>
+                        {user?.payment ? (<></>) : (<p className='hint'>**If you have paid the amount it will be verified in one or two days**</p>
+                        )
+                        }
                     </div>
                 </div>
                 <div className="logout-button">

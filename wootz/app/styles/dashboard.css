@@ -212,6 +212,12 @@ body.no-scroll {
     display: inline-block; /* Ensure it behaves like a button */
     text-decoration: none; 
 }
+.hint{
+    font-weight: 200;
+    font-style: italic;
+    font-size: 1rem;
+    padding-top: 1rem;
+}
 
 .payment-details {
     display: flex;

@@ -30,7 +30,7 @@ export function Hero({ onRegisterClick }) {
     <section id="hero">
       <BackgroundLines className="hero-container">
         <h2 className="hero-heading" data-aos="fade-down">
-          Wootz 16 - <span>April  6 </span>&<span> 7</span> <br /> Empowering the Future with Metals
+          Wootz 16 - <span>April  5  </span>&<span> 6 </span> <br /> Empowering the Future with Metals
         </h2>
 
         <p className="hero-subtext" data-aos="fade-up" data-aos-delay="300">

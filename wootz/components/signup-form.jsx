@@ -90,17 +90,15 @@ export function SignupForm({ className, email = "", ...props }) {
       return toast.error("Please enter a valid email address");
     }
 
-    // Phone number validation
+
     if (!/^\d{10}$/.test(formData.phone)) {
       return toast.error("Please enter a valid phone number");
     }
 
-    // Ensure PSG email users select PSG College
     if (formData.email.endsWith("psgtech.ac.in") && formData.college !== PSG_COLLEGE) {
       return toast.error("Please choose PSG College of Technology as your college");
     }
 
-    // Show intermediate processing toast
     const toastId = toast.loading("Registering...");
 
     try {
@@ -114,28 +112,11 @@ export function SignupForm({ className, email = "", ...props }) {
       });
 
       if (response.ok) {
-        // Send verification email
-        const res = await fetch("http://localhost:5000/api/auth/verify_email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            email: formData.email,
-            name: formData.name,
-          }),
-        });
 
-        if (res.ok) {
-          // Update toast to success
           toast.success("Registration successful!", { id: toastId });
 
           router.push(`/auth/verify-email?email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.name)}`);
-        } else {
-          // Update toast to error
-          toast.error("Registration failed", { id: toastId });
-        }
+    
       } else {
         const errorData = await response.json();
         toast.error(`Registration failed: ${errorData.message} Please Check The Email!`, { id: toastId });

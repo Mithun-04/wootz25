@@ -102,7 +102,13 @@ export default function PaymentPage() {
                         <button type="button" className="btn btn-outline" onClick={() => {
                             window.location.href = "/"
                         }}>Pay Later</button>
-                        <button className="btn btn-primary">Go to forms</button>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => window.open("https://docs.google.com/forms/d/1RMMGoO7dEin9XW4bjbTNwzJtTmZeKobiqGZF9QvYJ1U/edit#responses", "_blank")}
+                        >
+                            Go to forms
+                        </button>
+
                     </div>
                     <div className="footer-description">
                         * After the transaction, the payment cannot be refunded. For any queries,<Link href="/#contact">
