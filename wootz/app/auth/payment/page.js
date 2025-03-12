@@ -3,7 +3,9 @@
 import * as React from "react";
 import "./payment.css";
 import toast from "react-hot-toast";
-import { Bold } from "lucide-react";
+import { useSelector } from "react-redux";
+import Link from 'next/link';
+
 
 export default function PaymentPage() {
     const accountDetails = {
@@ -11,16 +13,49 @@ export default function PaymentPage() {
         ifecCode: "CBIN0280913",
     };
 
-    const amount = 150;
+
+    const user = useSelector(state => state.auth.user)?.user;
+    if (!user) {
+        return (
+            <div className="relative h-screen bg-black flex items-center justify-center">
+                <h1 className="absolute top-4 left-4 text-3xl font-bold text-white">
+                    Wootz 2025
+                </h1>
+                <div className="bg-white p-8 rounded-xl shadow-md text-center">
+                    <h2 className="text-2xl font-semibold text-gray-800">Login Required</h2>
+                    <p className="text-gray-600 mt-2">Please log in to access this page.</p>
+                    <button
+                        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+                        onClick={() => (window.location.href = "/auth/login")}
+                    >
+                        Go to Login
+                    </button>
+                </div>
+            </div>
+        );
+
+    }
+    console.log("User:", user);
+
+    const amount = user.email.endsWith("psgtech.ac.in") ? 200 : 400;
 
     const handleCopy = (text) => {
         navigator.clipboard.writeText(text);
         toast.success("Copied to clipboard!");
     };
 
+    const scrollToSection = (e) => {
+        e.preventDefault();
+        const section = document.getElementById("contact");
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+
     return (
         <div className="payment-wrapper">
-            <div className="wootz-title">Payment Details</div>
+            <div className="wootz-title">Wootz 2025</div>
             <div className="card-container">
                 <div className="card">
                     <div className="card-header">
@@ -36,7 +71,16 @@ export default function PaymentPage() {
                         <div className="details">
                             <div className="detail-item">
                                 <div className="acc-details">
-                                    <span>IFSC Code:</span>
+                                    <span>Wootz ID :</span>
+                                    <strong>{user.wootz_id}</strong>
+                                </div>
+                                <button onClick={() => handleCopy(user.wootz_id)}>
+                                    Copy
+                                </button>
+                            </div>
+                            <div className="detail-item">
+                                <div className="acc-details">
+                                    <span>IFSC Code :</span>
                                     <strong>{accountDetails.ifecCode}</strong>
                                 </div>
                                 <button onClick={() => handleCopy(accountDetails.ifecCode)}>
@@ -55,11 +99,16 @@ export default function PaymentPage() {
                         </div>
                     </div>
                     <div className="card-footer">
-                        <button type="button" className="btn btn-outline">Pay Later</button>
+                        <button type="button" className="btn btn-outline" onClick={() => {
+                            window.location.href = "/"
+                        }}>Pay Later</button>
                         <button className="btn btn-primary">Go to forms</button>
                     </div>
                     <div className="footer-description">
-                        * After the transaction, the payment cannot be refunded. For any queries,<a href="/"> Contact us</a>.
+                        * After the transaction, the payment cannot be refunded. For any queries,<Link href="/#contact">
+                            Contact us
+                        </Link>
+
                     </div>
                 </div>
             </div>

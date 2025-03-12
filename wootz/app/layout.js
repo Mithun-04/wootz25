@@ -9,6 +9,10 @@ import "./globals.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>Wootz 2025</title>
+        <link rel="icon" type="image/png" href="/hero-img3.png" />
+      </head>
       <body>
         <Provider store={store}>
           <PersistGate loading={<></>} persistor={persistor}>

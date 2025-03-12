@@ -114,7 +114,7 @@ export default function Eventpage() {
                     <button className="event-register" onClick={() => window.location.href = "/auth/signup"}>Register</button>
                   </div>) : (user?.payment ? (<></>) :
                     (<div className="register-button">
-                      <button className="event-register" onClick={() => window.location.href = "/auth/signup"}>Pay Now</button>
+                      <button className="event-register" onClick={() => window.location.href = "/auth/payment"}>Pay Now</button>
                     </div>))}
 
                 </div>

@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import "./password.css";
+import { useDispatch} from "react-redux";
+import { handleLogin } from "@/store/authSlice";
 
 export default function Page() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +16,7 @@ export default function Page() {
   const [token, setToken] = useState("");
   const [error, setError] = useState(null);
   const searchParams = useSearchParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const urlToken = searchParams.get("token");
@@ -34,9 +37,11 @@ export default function Page() {
         body: JSON.stringify({ token, password }),
       });
       const data = await response.json();
+      
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
       }
+      dispatch(handleLogin(data.jwt_token))
       toast.success("Password set successfully");
       window.location.href = "/auth/payment";
     } catch (err) {
@@ -55,7 +60,6 @@ export default function Page() {
             <div className="card-description">Enter a new password to activate your account.</div>
           </div>
           <div className="card-content">
-            {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit}>
               <div className="input-group">
                 <label htmlFor="password">Password</label>

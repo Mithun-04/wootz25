@@ -8,7 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useDispatch } from "react-redux";
-import { handleLogin } from "@/store/authSlice"; // ✅ Updated import
+import { handleLogin } from "@/store/authSlice";
+import { Eye, EyeOff } from "lucide-react";
+
 
 export function LoginForm({ className, ...props }) {
   const dispatch = useDispatch();
@@ -18,9 +20,41 @@ export function LoginForm({ className, ...props }) {
     password: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+
+
+  const handleResend = async () => {
+    if (!formData.email) return toast.error("Please enter your email");
+
+    const email = formData.email
+
+    const toastId = toast.loading("Resending verification email...");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/verify_email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        toast.success("Verification email sent successfully!", { id: toastId });
+      } else {
+        const errorData = await response.json();
+        toast.error(`Failed to resend email: ${errorData.message}`, { id: toastId });
+      }
+    } catch (error) {
+      toast.error("Failed to resend email. Please try again later.", { id: toastId });
+    }
+  };
+
   const handleLoginSubmit = async () => {
     if (!formData.email) return toast.error("Please enter your email");
     if (!formData.password) return toast.error("Please enter your password");
+
+    // Show intermediate loading toast
+    const toastId = toast.loading("Logging in...");
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -33,15 +67,19 @@ export function LoginForm({ className, ...props }) {
 
       if (response.ok) {
         const data = await response.json();
-        dispatch(handleLogin(data.token)); // ✅ Dispatch handleLogin (which sets Redux state + cookies)
-        toast.success("Login successful");
+        dispatch(handleLogin(data.token));
+
+        // Update toast to success
+        toast.success("Login successful!", { id: toastId });
         router.push("/");
       } else {
         const errorData = await response.json();
-        toast.error(`Login failed: ${errorData.message}`);
+
+        // Update toast to error
+        toast.error(`Login failed: ${errorData.message}`, { id: toastId });
       }
     } catch (error) {
-      toast.error(`Login failed: ${error.message}`);
+      toast.error(`Login failed: ${error.message}`, { id: toastId });
     }
   };
 
@@ -63,21 +101,38 @@ export function LoginForm({ className, ...props }) {
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             required
           />
+
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
+            <a
+              className="ml-auto text-sm underline-offset-4 hover:underline"
+              onClick={() => { handleResend() }}
+            >
               Forgot your password?
             </a>
           </div>
-          <Input
-            id="password"
-            type="password"
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            required
-          />
+          <div className="relative w-full">
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              className="w-full pr-10" // Add padding-right to avoid text overlap
+              required
+            />
+
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+
+
         </div>
         <Button type="button" onClick={handleLoginSubmit} className="w-full">
           Login

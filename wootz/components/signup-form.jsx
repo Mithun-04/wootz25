@@ -69,9 +69,7 @@ export function SignupForm({ className, email = "", ...props }) {
     }
   }, [email]);
 
-
   const handleContinue = async () => {
-
     if (!formData.name) return toast.error("Please enter your name");
     if (!formData.email) return toast.error("Please enter your email");
     if (!formData.phone) return toast.error("Please enter your phone number");
@@ -102,6 +100,9 @@ export function SignupForm({ className, email = "", ...props }) {
       return toast.error("Please choose PSG College of Technology as your college");
     }
 
+    // Show intermediate processing toast
+    const toastId = toast.loading("Registering...");
+
     try {
       console.log("Form Data", formData);
       const response = await fetch("http://localhost:5000/api/auth/register", {
@@ -113,8 +114,8 @@ export function SignupForm({ className, email = "", ...props }) {
       });
 
       if (response.ok) {
-
-        await fetch("http://localhost:5000/api/auth/verify_email", {
+        // Send verification email
+        const res = await fetch("http://localhost:5000/api/auth/verify_email", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -122,22 +123,28 @@ export function SignupForm({ className, email = "", ...props }) {
           credentials: "include",
           body: JSON.stringify({
             email: formData.email,
-            name: formData.name
+            name: formData.name,
           }),
         });
 
-        toast.success("Registration successful");
+        if (res.ok) {
+          // Update toast to success
+          toast.success("Registration successful!", { id: toastId });
 
-
-        router.push(`/auth/verify-email?email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.name)}`);
+          router.push(`/auth/verify-email?email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.name)}`);
+        } else {
+          // Update toast to error
+          toast.error("Registration failed", { id: toastId });
+        }
       } else {
         const errorData = await response.json();
-        toast.error(`Registration failed: ${errorData.message} Please Check The Email!`);
+        toast.error(`Registration failed: ${errorData.message} Please Check The Email!`, { id: toastId });
       }
     } catch (error) {
-      toast.error(`Registration failed - No Response: ${error.message}`);
+      toast.error(`Registration failed - No Response: ${error.message}`, { id: toastId });
     }
   };
+
 
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>

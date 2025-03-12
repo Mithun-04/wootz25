@@ -33,7 +33,7 @@ function Dashboard({ onBackClick, isOpen }) {
     }
 
     const handlePayment = () => {
-        console.log("Redirecting to payment page...");
+        window.location.href = "/auth/payment"
     };
 
     return (
