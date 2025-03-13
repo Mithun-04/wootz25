@@ -31,7 +31,7 @@ export default function Page() {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/api/auth/setpassword", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/setpassword`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, password }),

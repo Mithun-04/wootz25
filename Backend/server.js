@@ -14,10 +14,12 @@ dotenv.config(); // Load environment variables
 
 const app = express();
 
+console.log(process.env.FRONT_END_URL);
+
 // Middleware
 app.use(express.json()); 
 app.use(cors({
-  origin: "http://localhost:3000", 
+  origin: process.env.FRONT_END_URL, 
   credentials: true, 
 })); 
 app.use(bodyParser.urlencoded({ extended: true }));

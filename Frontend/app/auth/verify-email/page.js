@@ -26,7 +26,7 @@ const handleResend = async () => {
   const toastId = toast.loading("Resending verification email...");
 
   try {
-    const response = await fetch("http://localhost:5000/api/auth/verify_email", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/verify_email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
