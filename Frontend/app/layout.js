@@ -1,7 +1,5 @@
-"use client";
-import { Geist } from "next/font/google";
+
 import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { store, persistor } from "@/store/store";
 import { PersistGate } from "redux-persist/integration/react";
