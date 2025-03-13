@@ -48,7 +48,7 @@ exports.register = async (req, res) => {
           <p style="color: white;">Hello <strong>${name}</strong>,</p>
           <p style="color: white;">Click the button below to set up your password and verify your account:</p>
           <div style="text-align: center; margin-top: 10px;">
-            <a href="http://localhost:3000/auth/set-password?token=${token}" 
+            <a href="${process.env.FRONTEND_URL}/auth/set-password?token=${token}" 
                style="display: inline-block; padding: 12px 24px; background-color: #ff9900; color: #000; 
                text-decoration: none; font-weight: bold; border-radius: 5px;">
               Verify Email

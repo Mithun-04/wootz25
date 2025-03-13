@@ -14,12 +14,12 @@ dotenv.config(); // Load environment variables
 
 const app = express();
 
-console.log(process.env.FRONT_END_URL);
+console.log(process.env.FRONTEND_URL);
 
 // Middleware
 app.use(express.json()); 
 app.use(cors({
-  origin: process.env.FRONT_END_URL, 
+  origin: process.env.FRONTEND_URL, 
   credentials: true, 
 })); 
 app.use(bodyParser.urlencoded({ extended: true }));
