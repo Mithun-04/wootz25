@@ -7,6 +7,13 @@ import { PersistGate } from "redux-persist/integration/react";
 import "./globals.css";
 
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    const metaViewport = document.querySelector("meta[name=viewport]");
+    if (metaViewport) {
+      metaViewport.setAttribute("content", "width=device-width, initial-scale=0.8");
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
