@@ -104,7 +104,7 @@ export default function PaymentPage() {
                         }}>Pay Later</button>
                         <button
                             className="btn btn-primary"
-                            onClick={() => window.open("https://docs.google.com/forms/d/1RMMGoO7dEin9XW4bjbTNwzJtTmZeKobiqGZF9QvYJ1U/edit#responses", "_blank")}
+                            onClick={() => window.open("https://docs.google.com/forms/d/1TxZZWDMXE7S0MF19AubLclWvsjBfpxWjEwDrB665ZWs/edit#settings", "_blank")}
                         >
                             Go to forms
                         </button>
