@@ -30,6 +30,12 @@
     border-radius: 10px;
   }
   
+  .faq-wrapper{
+    width: 60%;
+    align-self: center;
+  }
+
+
   .accordion-item {
     border-bottom: 1px solid #ffffff40; /* Light white border */
   }
@@ -59,7 +65,9 @@
   
   @media (max-width: 640px) {
     .faq-wrapper {
+      width: 100%;
       transform: scale(0.9) !important;
     }
+
   }
   

@@ -156,12 +156,8 @@
     background-color: #e7f3ff;
 }
 
-.event-prizes {
-    background-color: #d4edda;
-}
-
 .event-contact {
-    background-color: #f8d7da;
+    background-color: #d4edda;
 }
 
 .not-found {
@@ -169,6 +165,10 @@
     color: #888;
     font-size: 18px;
     margin-top: 40px;
+}
+
+p{
+    text-align: justify;
 }
 
 @media (max-width: 467px) {

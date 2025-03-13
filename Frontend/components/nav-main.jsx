@@ -21,11 +21,20 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export function NavMain({ items }) {
   const pathname = usePathname();
   const isMobile = useIsMobile();
+  const { setOpenMobile } = useSidebar();
   const [openMenu, setOpenMenu] = useState(null);
+
+
+  const handleSubItemClick = () => {
+    if (isMobile) {
+      setOpenMenu(null);
+    }
+  };
 
   return (
     <SidebarGroup>
@@ -73,9 +82,15 @@ export function NavMain({ items }) {
                                   pathname: `/portal`,
                                   query: { event: subItem.title },
                                 }}
+                                onClick={() => {
+                                  if (isMobile) {
+                                    setTimeout(() => {
+                                      setOpenMobile(false); // Close sidebar after a short delay
+                                    }, 300); // Adjust delay time (200ms) as needed
+                                  }
+                                }}
                                 className={`block w-full px-4 py-2 hover:bg-gray-800 ${isSubActive ? "bg-gray-800 text-white" : isMobile ? "text-black" : "text-white"
                                   }`}
-
                                 aria-current={isSubActive ? "page" : undefined}
                               >
                                 <span>{subItem.title}</span>
@@ -91,10 +106,10 @@ export function NavMain({ items }) {
                 <SidebarMenuButton
                   tooltip={item.title}
                   asChild
-                  className={`hover:bg-gray-800 hover:text-white ${isActive ? "text-white" : ""
+                  className={`hover:bg-gray-800 hover:text-white ${isMobile ? "text-black" : "text-white"
                     }`}
                 >
-                  <a href={item.url} className="flex items-center w-full">
+                  <a href={item.url} className={`flex items-center w-full`}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
                   </a>

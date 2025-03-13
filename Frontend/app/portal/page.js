@@ -186,13 +186,6 @@ export default function Eventpage() {
                     <p><strong>Team Size:</strong> {eventDetails.venue.teamSize}</p>
                   </div>
 
-                  <div className="event-prizes card">
-                    <h3>Prizes</h3>
-                    <p><strong>Winner:</strong> ₹{eventDetails.venue.prizes.winner}</p>
-                    <p><strong>First Runner-Up:</strong> ₹{eventDetails.venue.prizes.firstRunnerUp}</p>
-                    <p><strong>Second Runner-Up:</strong> ₹{eventDetails.venue.prizes.secondRunnerUp}</p>
-                  </div>
-
                   <div className="event-contact card">
                     <h3>Contacts</h3>
                     {eventDetails.contacts?.map((contact, index) => (
