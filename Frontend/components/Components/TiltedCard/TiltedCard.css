@@ -27,8 +27,23 @@
   .tilted-card-mobile-alert {
     display: block;
   }
+
   .tilted-card-caption {
     display: none;
+  }
+
+  .tilted-card-inner {
+  transform: scale(0.85) !important; /* Adjust the height of the card */
+  }
+
+  .tilted-card-img{
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .tilted-card-overlay{
+    width: 100% !important;
+    height: 100% !important;
   }
 }
 

@@ -113,9 +113,10 @@
     }
 
     .event-card-container {
-        width: 90%;
-        max-width: 300px;
+        transform: scale(0.8);  /* Scales the element to 80% */
+        transform-origin: center; /* Keeps it centered */
     }
+    
 
     .event-card-overlay {
         padding: 10px;
