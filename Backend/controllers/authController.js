@@ -267,8 +267,8 @@ exports.verify_email = async (req, res) => {
       `,
     };
 
-
-    await transporter.sendMail(mailOptions);
+    await sendVerificationEmail(mailOptions);
+    
     res.json({ message: "Verification email sent successfully" });
 
   } catch (error) {
