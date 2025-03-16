@@ -58,6 +58,7 @@
     font-size: 16px;
     line-height: 1.5;
     color: #e4e4e4;
+    text-align: justify;
   }
   
   .card-content strong {
@@ -95,25 +96,32 @@
     }
   
     .card {
-      width: 90%;
+      width: 100%;
       padding: 1rem;
-      height: 38%;
+      padding-top: 12rem;
+      height: 100vh;
+      border-radius: 0;
+    }
+
+    .card-footer{
+      margin-top: 4rem;
     }
   
     .card-title {
-      font-size: 20px;
+      font-size: 1.3rem;
     }
   
     .card-description {
-      font-size: 13px;
+      font-size: 0.8rem;
     }
   
     .card-content p {
-      font-size: 14px;
+      font-size: 1.198rem;
+      text-align: justify;
     }
-  
+
     .btn {
-      font-size: 14px;
+      font-size: 1rem;
       padding: 10px;
     }
   }

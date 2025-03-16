@@ -63,7 +63,7 @@ const handleResend = async () => {
             </p>
             <p>If you don't see the email, check your spam folder.</p>
           </CardContent>
-          <CardFooter>
+          <CardFooter className = "card-footer">
             <button onClick = {handleResend}className="btn btn-primary">Resend</button>
           </CardFooter>
         </Card>

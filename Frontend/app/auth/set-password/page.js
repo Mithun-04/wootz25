@@ -49,7 +49,7 @@ export default function Page() {
       toast.error(err.message);
     }
   };
-
+  
   return (
     <div className="wrapper">
       <div className="wootz-title">Wootz 25</div>
@@ -100,7 +100,9 @@ export default function Page() {
                 </div>
               </div>
               <div className="card-footer">
-                <button type="button" className="btn btn-outline">Cancel</button>
+                <button type="button" className="btn btn-outline" onClick={() =>{
+                  window.location.href = "/"
+                }}>Cancel</button>
                 <button type="submit" className="btn btn-primary">Set Password</button>
               </div>
             </form>
