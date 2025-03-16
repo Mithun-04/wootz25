@@ -126,6 +126,10 @@
     padding: 1rem;
     border-radius: 0;
     padding-top: 10rem;
+    background: linear-gradient(135deg,
+    #080808 0%,
+    #2d2d2d 50%,
+    #3a2f45 100%);
   }
 
   .card-title {

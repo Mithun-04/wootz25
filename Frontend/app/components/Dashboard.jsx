@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { LuUserRound } from "react-icons/lu";
 import { IoArrowBack } from "react-icons/io5";
 import { MdOutlinePayment } from "react-icons/md";
-import { CheckCircle } from "lucide-react"; 
+import { CheckCircle } from "lucide-react";
 import { handleLogout } from '@/store/authSlice';
 
 function Dashboard({ onBackClick, isOpen }) {
@@ -89,7 +89,7 @@ function Dashboard({ onBackClick, isOpen }) {
                                 {user?.payment ? (
                                     <>
                                         <span>Payment Verified</span>
-                                       
+
                                     </>
                                 ) : (
                                     <>
@@ -100,7 +100,7 @@ function Dashboard({ onBackClick, isOpen }) {
                                     </>
                                 )}
                             </div>
-                            {user?.payment ? ( <CheckCircle color="#00FF00" size={20} />) : (
+                            {user?.payment ? (<CheckCircle color="#00FF00" size={20} />) : (
                                 <div className="pay-now-button">
                                     <button onClick={handlePayment}>Pay Now</button>
                                 </div>
@@ -112,7 +112,10 @@ function Dashboard({ onBackClick, isOpen }) {
                     </div>
                 </div>
                 <div className="logout-button">
-                    <button onClick={() => dispatch(handleLogout())}>Logout</button>
+                    <button onClick={() => {
+                        dispatch(handleLogout())
+                        window.location.href = "/"
+                    }}>Logout</button>
                 </div>
             </div>
         </>

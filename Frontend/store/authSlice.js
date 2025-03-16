@@ -15,7 +15,7 @@ export const fetchUser = createAsyncThunk("auth/fetchUser", async (_, { rejectWi
       return rejectWithValue("No token found");
     }
 
-    const response = await axios.get("http://localhost:5000/api/auth/profile", {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     console.log("User fetched successfully:", response.data);

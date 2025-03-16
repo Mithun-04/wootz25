@@ -1,128 +1,143 @@
+.wrapper {
+  position: relative;
+  background: #000000;
+  /* Black */
+  height: 100vh;
+  width: 100%;
+}
 
-  .wrapper {
-    position: relative;
-    background: #000000; /* Black */
-    height: 100vh;
-    width: 100%;
-  }
+.wootz-title {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  /* White Text */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Card Container */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Card Styling */
+.card {
+
+  width: 400px;
+  padding: 25px;
+  text-align: left;
+  background: #1a1a1a;
+  /* Dark Grey-Black */
+  border-radius: 15px;
+  box-shadow: 0px 6px 20px rgba(255, 255, 255, 0.2);
+  /* White Glow */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Title & Description */
+.card-header {
+  margin-bottom: 15px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  /* White */
+}
+
+.card-description {
+  font-size: 14px;
+  color: #b3b3b3;
+  /* Light Grey */
+}
+
+/* Email Content */
+.card-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #e4e4e4;
+  text-align: justify;
+}
+
+.card-content strong {
+  color: #ffffff;
+  /* White */
+}
+
+/* Button Styling */
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: #ffffff;
+  /* White */
+  color: #000000;
+  /* Black Text */
+}
+
+.btn-primary:hover {
+  background: #b3b3b3;
+  /* Grey Hover */
+  color: #000000;
+}
+
+/* 🔹 Responsive Design for Smaller Screens */
+@media (max-width: 480px) {
   .wootz-title {
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff; /* White Text */
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 20px;
+    top: 15px;
+    left: 15px;
   }
-  
-  /* Card Container */
-  .card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-  }
-  
-  /* Card Styling */
+
   .card {
-
-    width: 400px;
-    padding: 25px;
-    text-align: left;
-    background: #1a1a1a; /* Dark Grey-Black */
-    border-radius: 15px;
-    box-shadow: 0px 6px 20px rgba(255, 255, 255, 0.2); /* White Glow */
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-  
-  /* Title & Description */
-  .card-header {
-    margin-bottom: 15px;
-  }
-  
-  .card-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffffff; /* White */
-  }
-  
-  .card-description {
-    font-size: 14px;
-    color: #b3b3b3; /* Light Grey */
-  }
-  
-  /* Email Content */
-  .card-content p {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #e4e4e4;
-    text-align: justify;
-  }
-  
-  .card-content strong {
-    color: #ffffff; /* White */
-  }
-  
-  /* Button Styling */
-  .btn {
     width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    padding: 1rem;
+    padding-top: 12rem;
+    height: 100vh;
+    border-radius: 0;
+    background: linear-gradient(135deg,
+        #080808 0%,
+        #2d2d2d 50%,
+        #3a2f45 100%);
   }
-  
-  .btn-primary {
-    background: #ffffff; /* White */
-    color: #000000; /* Black Text */
-  }
-  
-  .btn-primary:hover {
-    background: #b3b3b3; /* Grey Hover */
-    color: #000000;
-  }
-  
-  /* 🔹 Responsive Design for Smaller Screens */
-  @media (max-width: 480px) {
-    .wootz-title {
-      font-size: 20px;
-      top: 15px;
-      left: 15px;
-    }
-  
-    .card {
-      width: 100%;
-      padding: 1rem;
-      padding-top: 12rem;
-      height: 100vh;
-      border-radius: 0;
-    }
 
-    .card-footer{
-      margin-top: 4rem;
-    }
-  
-    .card-title {
-      font-size: 1.3rem;
-    }
-  
-    .card-description {
-      font-size: 0.8rem;
-    }
-  
-    .card-content p {
-      font-size: 1.198rem;
-      text-align: justify;
-    }
 
-    .btn {
-      font-size: 1rem;
-      padding: 10px;
-    }
-  }
-  
+
+.card-footer {
+  margin-top: 4rem;
+}
+
+.card-title {
+  font-size: 1.3rem;
+}
+
+.card-description {
+  font-size: 0.8rem;
+}
+
+.card-content p {
+  font-size: 1.198rem;
+  text-align: justify;
+}
+
+.btn {
+  font-size: 1rem;
+  padding: 10px;
+}
+}
