@@ -15,6 +15,19 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+const sendVerificationEmail = async (mailOptions, retries = 3, delay = 2000) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("Email sent successfully");
+      return; // Exit on success
+    } catch (error) {
+      console.error(`Attempt ${attempt} failed: ${error.message}`);
+      if (attempt === retries) throw error; // Fail after max retries
+      await new Promise((resolve) => setTimeout(resolve, delay)); // Wait before retrying
+    }
+  }
+};
 
 exports.register = async (req, res) => {
   try {
@@ -60,8 +73,8 @@ exports.register = async (req, res) => {
         </div>
       `,
     };
-    
-    await transporter.sendMail(mailOptions);
+
+    await sendVerificationEmail(mailOptions);
 
     const user = new User({
       name,
@@ -264,3 +277,18 @@ exports.verify_email = async (req, res) => {
   }
 
 };
+
+exports.syncPayment = async (req, res) => {
+  try {
+    const data = req.body;
+    for (const item of data) {
+      await User.updateOne(
+        { wootz_id: item.wootz_id },
+        { $set: { payment: item.payment } },) // payment is now a boolean 
+    }
+    res.status(200).send('Payment status updated successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error updating MongoDB');
+  }
+}

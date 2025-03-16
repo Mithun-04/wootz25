@@ -1,5 +1,5 @@
 const express = require("express");
-const { register, login, getProfile, setPassword, verify_email } = require("../controllers/authController");
+const { register, login, getProfile, setPassword, verify_email , syncPayment} = require("../controllers/authController");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { set } = require("mongoose");
 
@@ -23,6 +23,8 @@ router.get("/profile", getProfile);
 
 router.post("/setpassword", setPassword);
 
-router.post("/verify_email", verify_email)
+router.post("/verify_email", verify_email);
+
+router.post("/syncPayment" , syncPayment)
 
 module.exports = router;
