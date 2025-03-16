@@ -31,7 +31,7 @@ export function LoginForm({ className, ...props }) {
     const toastId = toast.loading("Resending verification email...");
 
     try {
-      const response = await fetch(`${process.env.BACKEND_BASE_URL}/api/auth/verify_email`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/verify_email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -45,7 +45,7 @@ export function LoginForm({ className, ...props }) {
         toast.error(`Failed to resend email: ${errorData.message}`, { id: toastId });
       }
     } catch (error) {
-      toast.error("Failed to resend email. Please try again later.", { id: toastId });
+      toast.error(`Failed to resend email. Please try again later. - ${error.message}`, { id: toastId });
     }
   };
 

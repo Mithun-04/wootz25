@@ -15,6 +15,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+
 exports.register = async (req, res) => {
   try {
     const { name, email, phone, college, department, year } = req.body;
@@ -37,7 +38,6 @@ exports.register = async (req, res) => {
       { expiresIn: "2d" }
     );
     console.log("Token: ", token);
-    // Email options
     const mailOptions = {
       from: `"Wootz 25" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -60,11 +60,9 @@ exports.register = async (req, res) => {
         </div>
       `,
     };
-
-    // Attempt to send the email first
+    
     await transporter.sendMail(mailOptions);
 
-    // If email is sent successfully, create and save the user
     const user = new User({
       name,
       email,
@@ -88,7 +86,6 @@ exports.register = async (req, res) => {
   } catch (error) {
     console.error("Error:", error);
 
-    // Check if error is from nodemailer
     if (error.response) {
       return res.status(500).json({ message: "Failed to send verification email", error: error.message });
     }
@@ -97,7 +94,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// New endpoint to handle email verification link and password setting
 exports.setPassword = async (req, res) => {
   try {
     const { token, password } = req.body;
@@ -245,7 +241,7 @@ exports.verify_email = async (req, res) => {
           <p style="color: white;">Hello <strong>${user.name}</strong>,</p>
           <p style="color: white;">Click the button below to set up your password and verify your account:</p>
           <div style="text-align: center; margin-top: 10px;">
-            <a href="http://localhost:3000/auth/set-password?token=${token}" 
+            <a href="${process.env.FRONTEND_URL}/auth/set-password?token=${token}" 
                style="display: inline-block; padding: 12px 24px; background-color: #ff9900; color: #000; 
                text-decoration: none; font-weight: bold; border-radius: 5px;">
               Verify Email
