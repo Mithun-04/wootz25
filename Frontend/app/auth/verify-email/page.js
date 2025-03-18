@@ -59,9 +59,9 @@ const handleResend = async () => {
           <CardContent className="card-content">
             <p>
               We have sent a password setup link to <strong>{email}</strong>.
-              Please check your inbox.Please click the link in the email to confirm your email address. 
+              Please check your inbox. Please click the link in the email to confirm your email address. 
             </p>
-            <p>If you don't see the email, check your spam folder.</p>
+            <strong><p>*If you don't see the email, check your spam folder.*</p></strong>
           </CardContent>
           <CardFooter className = "card-footer">
             <button onClick = {handleResend}className="btn btn-primary">Resend</button>
