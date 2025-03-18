@@ -131,6 +131,7 @@ export function SignupForm({ className, email = "", ...props }) {
 
       if (response.ok) {
         toast.success("Registration successful!", { id: toastId });
+        
         router.push(`/auth/verify-email?email=${encodeURIComponent(finalFormData.email)}&name=${encodeURIComponent(finalFormData.name)}`);
       } else {
         const errorData = await response.json();
