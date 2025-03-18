@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./Backend
+      dockerfile: dockerfile.backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./Backend/.env  # Includes MongoDB Atlas URI
+    restart: always
+
+  frontend:
+    build: 
+      context: ./Frontend
+      dockerfile: dockerfile.frontend
+    ports:
+      - "3000:3000"  # Localhost:3000 → Next.js on port 3000
+    depends_on:
+      - backend
+    restart: always
+    env_file:
+      - ./Frontend/.env  # Frontend environment variables

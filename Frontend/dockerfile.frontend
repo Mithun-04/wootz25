@@ -1,0 +1,40 @@
+# Stage 1: Build the Next.js app
+FROM node:18 AS build
+
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy the rest of the frontend files (including public/)
+COPY . .
+
+# Build the Next.js app
+RUN npm run build
+
+# Stage 2: Run the standalone app
+FROM node:18-slim
+
+WORKDIR /app
+
+# Install production dependencies
+COPY package.json package-lock.json ./
+RUN npm install --production
+
+# Copy the standalone build
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
+
+# Copy the public directory for static assets
+COPY --from=build /app/public ./public
+
+# Expose Next.js default port
+EXPOSE 3000
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Start the app
+CMD ["node", "server.js"]

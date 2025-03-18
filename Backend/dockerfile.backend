@@ -1,0 +1,19 @@
+# Use Node.js as the base image
+FROM node:18
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install 
+
+RUN npm install -g nodemon
+# Copy the rest of the backend code
+COPY . .
+
+# Expose the backend port (default: 7000)
+EXPOSE 5000
+
+# Start the backend server
+CMD ["nodemon", "server.js"]
