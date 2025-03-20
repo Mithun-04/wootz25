@@ -80,7 +80,7 @@ export const { login, logout, clearState } = authSlice.actions;
 export const handleLogin = (token) => (dispatch) => {
   cookies.set("token", token, {
     path: "/",
-    expires: new Date(Date.now() + 2 * 60 * 1000), 
+    expires: new Date(Date.now() + 2 * 60 * 60* 1000), 
   });
 
   dispatch(login(token));
