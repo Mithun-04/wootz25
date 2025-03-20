@@ -11,6 +11,7 @@ export function Hero({ onRegisterClick }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector(state => state.auth.user)?.user;
   const [auth, setAuth] = useState(null);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export function Hero({ onRegisterClick }) {
         <div className="hero-buttons" data-aos="zoom-in" data-aos-delay="600">
           {auth === null ? ( 
             <button className="hero-button">Loading...</button>
-          ) : auth ? (
+          ) : user ? (
             <>
               <button className="hero-button-login" onClick={onRegisterClick}>
                 Dashboard

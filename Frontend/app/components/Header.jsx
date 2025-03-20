@@ -13,6 +13,7 @@ const Header = ({ onRegisterClick }) => {
   const [auth, setAuth] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector(state => state.auth.user)?.user;
   const router = useRouter();
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Header = ({ onRegisterClick }) => {
           <li><Link to="workshops" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Workshops</Link></li>
           <li><Link to="faq" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>FAQs</Link></li>
           <li><Link to="contact" smooth={true} duration={500} onClick={() => setMenuOpen(false)}>Contact</Link></li>
-          {auth ? (
+          {user ? (
             <li onClick={() => { setMenuOpen(false); onRegisterClick(); }}>
               Dashboard
             </li>

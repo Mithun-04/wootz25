@@ -107,7 +107,7 @@ export function LoginForm({ className, ...props }) {
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
             <a
-              className="ml-auto text-sm underline-offset-4 hover:underline"
+              className="ml-auto text-sm underline-offset-4 hover:underline cursor:pointer"
               onClick={() => { handleResend() }}
             >
               Forgot your password?
