@@ -7,17 +7,17 @@ import { Instagram } from 'lucide-react';// Import icons
 
 export default function ContactUs() {
     return (
-        <div className="contact-container" id = "contact">
+        <div className="contact-container" id="contact">
             <h1 className="contact-title">Contact Us</h1>
             <div className="contact-section">
                 <div className="social-links">
                     <div className="social-item">
                         <Instagram size={30} />
-                        <a href="https://www.instagram.com/wootz_2k25/" target="_blank" rel="noreferrer">Instagram</a>
+                        <a href="https://www.instagram.com/psgct_metallurgy?igsh=MW5xOXJoZGtmMHRxaw==" target="_blank" rel="noreferrer">Instagram</a>
                     </div>
                     <div className="social-item">
                         <Mail size={30} />
-                        <a href="" target="_blank" rel="noreferrer">Mail</a>
+                        <a href="mailto:noreply.wootzed16@gmail.com?subject=Contact%20Request" target="_blank" rel="noreferrer">Mail</a>
                     </div>
                 </div>
 
@@ -39,8 +39,8 @@ export default function ContactUs() {
 
                     <div className="category">
                         <h3>Developers</h3>
-                      <p><strong>Mathan Kumar S</strong></p>
-                     <p><strong>Mithunkarthik A S</strong></p>
+                        <p><strong>Mathan Kumar S</strong></p>
+                        <p><strong>Mithunkarthik A S</strong></p>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@ const authRoutes = require("./routes/authRoutes");
 const eventRoutes = require("./routes/eventRoutes");
 const userRoutes = require("./routes/userRoutes");
 
-dotenv.config(); // Load environment variables
+dotenv.config(); 
 
 const app = express();
 
