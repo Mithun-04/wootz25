@@ -16,18 +16,17 @@ const app = express();
 
 console.log(process.env.FRONTEND_URL);
 
-// Middleware
-app.use(express.json()); 
+app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL, 
-  credentials: true, 
-})); 
+  origin: "*",  
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 mongoose.set("debug", true);
 app.set("trust proxy", 1);
 
-// Connect to MongoDB
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected!"))
