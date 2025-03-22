@@ -34,7 +34,6 @@ export function LoginForm({ className, ...props }) {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/verify_email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({ email }),
       });
 
